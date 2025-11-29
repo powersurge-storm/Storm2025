@@ -39,13 +39,13 @@ async def main():
 
     #Go back 
     motor_pair.move(motor_pair.PAIR_1,0,velocity= -50)
-    await runloop.sleep_ms(2150)
+    await runloop.sleep_ms(1500)
     motor_pair.stop(motor_pair.PAIR_1)
 
-    #Drop other attachment 
-    motor.run(port.C, 350,acceleration=100000)
-    await runloop.sleep_ms(1000)
-    motor.stop(port.C)
+    # #Drop other attachment 
+    # motor.run(port.C, 350,acceleration=100000)
+    # await runloop.sleep_ms(1000)
+    # motor.stop(port.C)
 
     #move left
     while motion_sensor.tilt_angles()[0]< 150:
@@ -58,12 +58,12 @@ async def main():
     motor_pair.stop(motor_pair.PAIR_1)
 
     # Another Turn Left to solve Markets
-    while motion_sensor.tilt_angles()[0]< 150:
+    while motion_sensor.tilt_angles()[0]< 200:
         motor_pair.move(motor_pair.PAIR_1,-100)
     motor_pair.stop(motor_pair.PAIR_1)
 
     # Turn Right back
-    while motion_sensor.tilt_angles()[0]>-150:
+    while motion_sensor.tilt_angles()[0]>-200:
         motor_pair.move(motor_pair.PAIR_1,100)
     motor_pair.stop(motor_pair.PAIR_1)
 
