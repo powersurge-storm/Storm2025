@@ -45,21 +45,21 @@ async def main():
     motor_pair.stop(motor_pair.PAIR_1)
 
     #Use M10 Attatchment-
-    motor.run(port.C, -110,acceleration=120) 
+    motor.run(port.C, -110,acceleration=120)
     await runloop.sleep_ms(3500)
-    motor.stop(port.C) 
+    motor.stop(port.C)
     await runloop.sleep_ms(1800)
 
 #Move Backwards
     motor_pair.move(motor_pair.PAIR_1,0,velocity=-132)
     await runloop.sleep_ms(1500)
     motor_pair.stop(motor_pair.PAIR_1)
-   
+
 #Turn Left
     motion_sensor.reset_yaw(0)# reset yaw angle
     while motion_sensor.tilt_angles()[0]<940:#getting yaw value from tuple
         motor_pair.move(motor_pair.PAIR_1,-100)#move to left
-    motor_pair.stop(motor_pair.PAIR_1)#stop 
+    motor_pair.stop(motor_pair.PAIR_1)#stop
 
 #Return to Home Base Step 1
     motor_pair.move(motor_pair.PAIR_1,0,velocity=-400)
