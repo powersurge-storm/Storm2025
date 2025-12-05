@@ -1,3 +1,7 @@
+# Author(s): Anavi Sambaraju & Sharman Gokhale
+# Team Powersurge Storm 2025
+# This code solves 2 missions Surface Brushing & Map Reveal, and scores 60 points
+
 from hub import port
 import motor_pair
 from hub import motion_sensor
