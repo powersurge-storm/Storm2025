@@ -1,6 +1,6 @@
 # ASE WAND INNOVATION PROJECT
 
-## FIRST LEGO League 2024-2025 Season
+## FIRST LEGO League 2025-2026 Season
 ### Team PowerSurge Storm
 
 ---
@@ -14,12 +14,10 @@
 
 **Team PowerSurge Storm**
 
-*Submerged Theme - 2024-2025*
+*Submerged Theme - 2025-2026*
 
 ---
-
-**[INSERT TEAM PHOTO HERE]**
-
+![TeamPic](https://github.com/user-attachments/assets/eb3856ed-0637-45d5-9b3e-b3a15744b944)
 ---
 
 </div>
