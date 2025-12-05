@@ -62,13 +62,15 @@ async def main():
     motor_pair.stop(motor_pair.PAIR_1)#stop
 
 #Return to Home Base Step 1
-    motor_pair.move(motor_pair.PAIR_1,0,velocity=-400)
-    await runloop.sleep_ms(3000)
-    motor_pair.stop(motor_pair.PAIR_1)
+    # motor_pair.move(motor_pair.PAIR_1,0,velocity=-700)
+    # await runloop.sleep_ms(3000)
+    # motor_pair.stop(motor_pair.PAIR_1)
 
-#Return to Home Base Step 2
-    motor_pair.move(motor_pair.PAIR_1,0,velocity=-132)
-    await runloop.sleep_ms(1500)
-    motor_pair.stop(motor_pair.PAIR_1)
+# #Return to Home Base Step 2
+#     motor_pair.move(motor_pair.PAIR_1,0,velocity=-132)
+#     await runloop.sleep_ms(1500)
+#     motor_pair.stop(motor_pair.PAIR_1)
+
+    await motor_pair.move_for_degrees(motor_pair.PAIR_1,-1600,-7,velocity=600)
 
 runloop.run(main())
