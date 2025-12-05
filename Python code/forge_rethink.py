@@ -1,3 +1,7 @@
+# Author(s): Saanvika & Darshan
+# Team Powersurge Storm 2025
+# This code solves 3 missions Forge, Ore Blocks, and Who lived there, and scores 90 points in one run
+
 import runloop
 from hub import port
 from hub import motion_sensor
