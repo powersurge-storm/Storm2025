@@ -1,3 +1,7 @@
+# Author(s): Mansi Ommi & Sana Salavath
+# Team Powersurge Storm 2025
+# This code solves 1 mission Heavy lifting and sends Robot to Left base without losing a precision token
+
 import runloop
 from hub import motion_sensor
 from hub import port
