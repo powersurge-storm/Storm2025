@@ -1,3 +1,7 @@
+# Author(s): Shrihan Vemula & Amelia Easter
+# Team Powersurge Storm 2025
+# This code solves 1 mission and sends Minecraft to other Team's board, and scores 30-40 points
+
 from hub import light_matrix
 import runloop
 from hub import port
