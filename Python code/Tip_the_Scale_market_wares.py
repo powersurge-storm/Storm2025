@@ -1,3 +1,7 @@
+# Author(s): Mansi Ommi & Sana Salavath
+# Team Powersurge Storm 2025
+# This code solves 2 missions Tip ths scales, and Market wares, and scores 40 points in one run
+
 import runloop
 from hub import port
 import motor_pair
