@@ -66,7 +66,8 @@ The **ASE Wand** (Archaeological Survey & Excavation Wand) is an all-in-one fiel
 
 ## Team Members & Roles
 
-**[INSERT TEAM PHOTO: Cover slide team photo - all 9 members]**
+![TeamIndPic](https://github.com/user-attachments/assets/91fae03d-431c-4778-8718-a0d0c6594bd7)
+
 
 Throughout the season, team members rotated responsibilities to ensure everyone gained diverse experience:
 
@@ -82,8 +83,6 @@ Throughout the season, team members rotated responsibilities to ensure everyone 
 | **Sana Salavath** | Research, Team Lead, Scrum Master | Team coordination and project management |
 | **Saanvika Yezzuvarapu** | Programmer, Team Coordinator | Programming and team coordination |
 
-**[INSERT PHOTO: Team roles slide with individual photos]**
-
 ---
 
 ## Working Strategy
@@ -96,7 +95,7 @@ Throughout the season, team members rotated responsibilities to ensure everyone 
 
 ### Communication Methods
 - Weekly team meetings (in-person)
-- Digital collaboration platform: **[Platform Name]**
+- Digital collaboration platform: GitHub
 - Group messaging for quick updates
 - Shared document repository
 - Monthly retrospectives
@@ -177,7 +176,7 @@ Throughout the season, team members rotated responsibilities to ensure everyone 
 | **Phase 3: Refinement** | Weeks 11-13 | 10 meetings | 27 hours | Technical specifications, programming |
 | **Phase 4: Finalization** | Weeks 14-15 | 4 meetings | 14 hours | Documentation, presentation practice |
 
-**[INSERT PHOTO: Attendance tracking board/sheet]**
+<img width="562" height="329" alt="AttenTrack" src="https://github.com/user-attachments/assets/b3fdbda6-2a7c-4473-b15d-86754a9d2542" />
 
 ---
 
@@ -195,7 +194,7 @@ Throughout the season, team members rotated responsibilities to ensure everyone 
 - Archaeological Survey of Illinois visit completed
 - Initial problem list created (20+ problems identified)
 
-**[INSERT PHOTO: Field Museum Visit]**
+![PXL_20250823_201232643](https://github.com/user-attachments/assets/a106ed3c-2788-4029-86b4-d60e384ed0d9)
 
 ---
 
@@ -211,7 +210,15 @@ Throughout the season, team members rotated responsibilities to ensure everyone 
 - Email correspondence established
 - Problem narrowed to: Data loss & efficiency
 
-**[INSERT PHOTO: Zoom Meeting with Expert]**
+![expertvisit](https://github.com/user-attachments/assets/baa55eaf-bb03-4999-8c55-82845c273cab)
+
+<img width="1134" height="823" alt="Screenshot 2025-09-16 at 6 43 03 PM" src="https://github.com/user-attachments/assets/84581a10-da82-497d-9f5f-3d15f8bafdac" />
+
+![PXL_20250914_200301306](https://github.com/user-attachments/assets/4d7066a1-9083-4443-b9bc-9dc86292610e)
+
+<img width="960" height="2142" alt="Screenshot_20251101-140545" src="https://github.com/user-attachments/assets/85ef0628-0919-4ff2-8d34-aafcca1de3c1" />
+
+![PXL_20251116_204735410](https://github.com/user-attachments/assets/9d62ca8b-fb91-47a6-873d-c9602788d29d)
 
 ---
 
@@ -227,7 +234,7 @@ Throughout the season, team members rotated responsibilities to ensure everyone 
 - Design Iteration 2: Smart scanning tool
 - Design Iteration 3: All-in-one device (final)
 
-**[INSERT PHOTO: Design Brainstorming Session]**
+![bs](https://github.com/user-attachments/assets/8a0cd401-a541-4a06-a6d7-df196a130c8d)
 
 ---
 
@@ -244,15 +251,11 @@ Throughout the season, team members rotated responsibilities to ensure everyone 
 - Documentation finalized
 - Team presentation polished
 
-**[INSERT PHOTO: Lab Interface Demo]**
-
----
-
 ### Storyboard & Progress Tracking
 
 We used a visual storyboard to track our journey:
 
-**[INSERT PHOTO: Project Storyboard]**
+![_Effective Project Plan](https://github.com/user-attachments/assets/c762930a-5c93-49f4-bbb5-1dc90ee172a8)
 
 Our storyboard included:
 - Weekly goals and achievements
@@ -268,9 +271,9 @@ Our storyboard included:
 ## Field Trips & Learning Experiences
 
 ### 1. Field Museum Visit
-**Date:** [Date]  
+**Date:** 08/23/2025  
 **Location:** Chicago, IL  
-**Duration:** [Hours]
+**Duration:** 6 hours
 
 **What We Learned:**
 - How museums preserve and display artifacts
@@ -283,16 +286,11 @@ Our storyboard included:
 - Data loss can destroy historical understanding
 - Modern technology is transforming the field
 
-**[INSERT PHOTO: Field Museum Visit - Team in auditorium]**
-**[INSERT PHOTO: Field Museum - Learning about exhibits]**
-**[INSERT PHOTO: Archaeological Survey of Illinois Conference]**
+![Innovation Powersurge Storm](https://github.com/user-attachments/assets/a80dde1d-44c1-43a5-ade0-963f5fbf6628)
 
 ---
 
 ### 2. Archaeological Survey of Illinois
-**Date:** [Date]  
-**Location:** Urbana, IL  
-**Duration:** [Hours]
 
 **What We Learned:**
 - Real-world excavation techniques
@@ -306,11 +304,7 @@ Our storyboard included:
 - Data needs to reach labs quickly for analysis
 - Losing context makes artifacts nearly worthless
 
-**[INSERT PHOTOS: Archaeological Survey Visit - 3-4 images]**
-- Photo 1: Team with archaeologists
-- Photo 2: Learning about excavation tools
-- Photo 3: Examining site documentation
-- Photo 4: Discussion about challenges
+![Innovation Powersurge Storm (1)](https://github.com/user-attachments/assets/c309f640-9629-41f9-830f-43b4bdf9ff2c)
 
 ---
 
@@ -327,8 +321,7 @@ Our storyboard included:
 - Learned importance of public archaeology education
 - Built team spirit through service
 
-**[INSERT PHOTOS: SEWA Diwali Food Drive - Team with banner]**
-**[INSERT PHOTOS: Million Meal Food Drive - Team volunteering]**
+![fun](https://github.com/user-attachments/assets/65ec93f6-1d9a-44c2-a60a-6dbc6c20d4b9)
 
 ---
 
@@ -337,8 +330,8 @@ Our storyboard included:
 ### Our Expert Network
 
 Throughout our project, we consulted with professional archaeologists and technical experts to ensure our innovation addresses real problems:
+![expertvisit](https://github.com/user-attachments/assets/fc47c691-dbdf-46ac-ad40-292364915457)
 
-**[INSERT PHOTO: Team Expert Meetings Collage - All Zoom and In-Person Sessions]**
 
 ### Expert Meeting Photos
 
@@ -364,7 +357,7 @@ Throughout our project, we consulted with professional archaeologists and techni
 
 | Expert Name | Organization | Date | Method | Key Insights |
 |-------------|--------------|------|--------|--------------|
-| **[Name]** | [Organization] | [Date] | Zoom | [Key insight] |
+| Dr. John M. | [Organization] | [Date] | Zoom | [Key insight] |
 | **[Name]** | [Organization] | [Date] | Email | [Key insight] |
 | **[Name]** | [Organization] | [Date] | In-person | [Key insight] |
 | **[Name]** | [Organization] | [Date] | Zoom | [Key insight] |
