@@ -333,37 +333,22 @@ Throughout our project, we consulted with professional archaeologists and techni
 ![expertvisit](https://github.com/user-attachments/assets/fc47c691-dbdf-46ac-ad40-292364915457)
 
 
-### Expert Meeting Photos
+### Expert Meet
 
-**[INSERT PHOTO: Zoom Meeting with Dr. Angela Cooper - Cahokia Mounds]**
+*Dr. Angela Cooper - Cahokia Mounds*
 *Date: November 1, 2025 - 30-minute consultation about ASE Wand practicality*
 
-**[INSERT PHOTO: Zoom Meeting with Anna Tulley - SWCA Environmental Consultants]**
+* Anna Tulley - SWCA Environmental Consultants*
 *Date: September 2025 - Discussion about field archaeology challenges*
 
-**[INSERT PHOTO: Zoom Meeting with Mr. Chakravarti Kodavanti - State Farm]**
+*Mr. Chakravarti Kodavanti - State Farm*
 *Date: November 2025 - AI and software cost analysis guidance*
 
-**[INSERT PHOTO: Zoom Meeting with Dr. Claire Tolmie]**
+*Dr. Claire Tolmie]*
 *Date: September 2025 - Introduction to archaeology and field work fundamentals*
 
-**[INSERT PHOTO: In-Person Meeting with Dr. John M. Lambert - Illinois State Archaeological Survey]**
+*Dr. John M. Lambert - Illinois State Archaeological Survey*
 *Location: University of Illinois Urbana-Champaign - Hands-on discussion of field technology*
-
-**[INSERT PHOTO: Team During Expert Consultation - Working Session]**
-*Students taking notes and discussing expert feedback*
-
----
-
-| Expert Name | Organization | Date | Method | Key Insights |
-|-------------|--------------|------|--------|--------------|
-| Dr. John M. | [Organization] | [Date] | Zoom | [Key insight] |
-| **[Name]** | [Organization] | [Date] | Email | [Key insight] |
-| **[Name]** | [Organization] | [Date] | In-person | [Key insight] |
-| **[Name]** | [Organization] | [Date] | Zoom | [Key insight] |
-| **[Name]** | [Organization] | [Date] | Email | [Key insight] |
-
----
 
 ### Expert Feedback Integration
 
@@ -385,7 +370,6 @@ Throughout our project, we consulted with professional archaeologists and techni
 ### Email Correspondence Summary
 
 Throughout the project, Team PowerSurge Storm maintained active communication with multiple archaeology professionals, receiving critical feedback that shaped each iteration of the ASE Wand.
-
 ---
 
 #### Expert #1: Dr. John M. Lambert, MA
@@ -533,10 +517,6 @@ Team shared ASE Wand, Mystery Artifact Database, and ArchaeoLink concepts based 
 **Additional Experts Consulted:**
 - **Dale Simpson** - Archaeologist (Provided field archaeology perspective)
 - **Badri** - FLL Expert (Competition guidance and mentorship)
-
-**[INSERT PHOTO: Meeting with Dale Simpson]**
-**[INSERT PHOTO: Meeting with Badri and team]**
-
 ---
 
 ### Summary of Expert Feedback Impact
@@ -567,10 +547,6 @@ Data loss, miscommunication, and lack of integration between field and lab is a 
 
 ## State-Winning Team Consultation
 
-**Team:** [Team Name]  
-**Date:** [Date]  
-**Method:** [Zoom/In-person]
-
 **What We Learned:**
 - Importance of clear problem statement
 - How to present technical innovations simply
@@ -582,9 +558,6 @@ Data loss, miscommunication, and lack of integration between field and lab is a 
 - Added more visual demonstrations
 - Strengthened our expert connections
 - Improved teamwork dynamics
-
-**[INSERT PHOTO: Meeting with State-Winning Team]**
-
 ---
 
 # PROBLEM IDENTIFICATION
@@ -646,9 +619,6 @@ The destruction of these ancient Buddhist statues erased:
 - Irreplaceable artifacts
 
 **Our Takeaway:** Data preservation is not optional—it's essential for protecting human history.
-
-**[INSERT PHOTO: Historical reference or team discussion about this example]**
-
 ---
 
 ### Problem Selection Process
@@ -687,8 +657,6 @@ We identified **20+ challenges** archaeologists face, including:
 
 **Impact:** Faster data transfer, but incomplete solution
 
-**[INSERT PHOTO/SKETCH: Iteration 1 Design]**
-
 ---
 
 ### Iteration 2: Smart Scanning Tool
@@ -705,8 +673,6 @@ We identified **20+ challenges** archaeologists face, including:
 
 **Impact:** Much better object detection and data analysis
 
-**[INSERT PHOTO/SKETCH: Iteration 2 Design]**
-
 ---
 
 ### Iteration 3: All-in-One Device (FINAL)
@@ -722,8 +688,6 @@ We identified **20+ challenges** archaeologists face, including:
 - "The cost is reasonable and practical"
 
 **Impact:** Multifunctional tool that prevents data loss and improves efficiency
-
-**[INSERT PHOTO/SKETCH: Final Design]**
 
 ---
 
@@ -758,7 +722,6 @@ We identified **20+ challenges** archaeologists face, including:
 - Precise measurements
 - Visual site documentation
 - Track excavation progress
-
 ---
 
 #### 3. GPR (Ground Penetrating Radar)
@@ -836,8 +799,6 @@ We identified **20+ challenges** archaeologists face, including:
 - Context preserved forever
 - Collaboration enabled
 
-**[INSERT DIAGRAM: Field Workflow Visual]**
-
 ---
 
 ### Lab Interface
@@ -868,9 +829,6 @@ Scientists receive comprehensive data:
 - Preservation requirements
 - Context notes
 
-**[INSERT SCREENSHOT: Lab Interface]**
-
----
 
 ## Component Cost Analysis
 
@@ -914,8 +872,6 @@ Scientists receive comprehensive data:
 - Rechargeable battery (8+ hours)
 - Modular design for repairs
 
-**[INSERT PHOTO/DRAWING: Physical Design Sketch]**
-
 ---
 
 # IMPLEMENTATION & DEMO
@@ -941,12 +897,6 @@ We built a working demonstration of the ASE Wand's lab interface to show how dat
 - Sana Salavath
 - Angela Cooper
 
-**[INSERT SCREENSHOT: Live Demo Interface]**
-
-### Try Our Demo!
-**Link:** [Insert published Claude link]
-
----
 
 # IMPACT & BENEFITS
 
@@ -1030,40 +980,7 @@ We built a working demonstration of the ASE Wand's lab interface to show how dat
 - Cultural awareness
 - Community engagement
 
-**[INSERT PHOTO: Impact Diagram or Presentation]**
 
----
-
-# EXPERT VALIDATION
-
-## Professional Endorsements
-
-Our innovation received validation from multiple archaeology professionals:
-
-### Key Expert Quotes:
-
-**"[Quote from expert about data loss being a critical problem]"**  
-— [Name], [Title], [Organization]
-
-**"[Quote about the ASE Wand's potential impact]"**  
-— [Name], [Title], [Organization]
-
-**"[Quote about technical feasibility]"**  
-— [Name], [Title], [Organization]
-
-**[INSERT PHOTOS: Team with Experts - Multiple images]**
-
----
-
-## Expert Meeting Summary Table
-
-| Expert | Organization | Meeting Date | Format | Key Validation |
-|--------|--------------|--------------|--------|----------------|
-| [Name] | [Org] | [Date] | Zoom | Confirmed data loss as #1 problem |
-| [Name] | [Org] | [Date] | In-person | Validated technical approach |
-| [Name] | [Org] | [Date] | Email | Approved cost estimates |
-| [Name] | [Org] | [Date] | Zoom | Endorsed final design |
-| [Name] | [Org] | [Date] | In-person | Suggested museum applications |
 
 ---
 
@@ -1088,8 +1005,6 @@ Our innovation received validation from multiple archaeology professionals:
 - Optimize battery life
 - Enhance weather resistance
 - Streamline user interface
-
-**[INSERT PHOTO: Future Planning Session]**
 
 ---
 
@@ -1134,8 +1049,6 @@ Our innovation received validation from multiple archaeology professionals:
 - Drone connectivity for aerial mapping
 - Virtual reality excavation planning
 
-**[INSERT DIAGRAM: Future Roadmap]**
-
 ---
 
 # PROJECT REFLECTIONS
@@ -1150,7 +1063,6 @@ Our innovation received validation from multiple archaeology professionals:
 - Conducted multiple expert interviews
 - Visited real archaeological sites
 - Read professional journals and papers
-
 ---
 
 ### Expert Feedback Drives Innovation
@@ -1172,8 +1084,6 @@ Our innovation received validation from multiple archaeology professionals:
 - Held weekly collaborative work sessions
 - Celebrated each other's contributions
 - Supported teammates through challenges
-
-**[INSERT PHOTO: Team Collaboration]**
 
 ---
 
@@ -1200,10 +1110,7 @@ Beyond the hard work, we built strong friendships and maintained team morale:
 - 🎉 **Fun breaks** - the secret ingredient for creativity
 - 📚 **Learning together** - shared discoveries and "aha!" moments
 
-**[INSERT PHOTOS: Pizza lunch with team]**
-**[INSERT PHOTOS: Team playing games together]**
-**[INSERT PHOTOS: Donut celebration]**
-**[INSERT PHOTOS: Team working on laptops during meeting]**
+![fun](https://github.com/user-attachments/assets/781f0a1e-906f-4ddc-8268-9d761960c8e2)
 
 ---
 
@@ -1235,134 +1142,23 @@ The **ASE Wand** represents more than just a technical innovation—it's a pract
 
 # ACKNOWLEDGMENTS
 
-## Special Thanks To:
+## Special Thanks To: Expert Advisors, Institutions,Mentors & Supporters and Our Families
 
-### Expert Advisors
-- [Name], [Title] - [Organization]
-- [Name], [Title] - [Organization]
-- [Name], [Title] - [Organization]
-- [Name], [Title] - [Organization]
-- [Name], [Title] - [Organization]
-
-### Institutions
-- Field Museum, Chicago, IL
-- Archaeological Survey of Illinois, Urbana, IL
-- [State-Winning FLL Team Name]
-
-### Mentors & Supporters
-- [Coach/Mentor Names]
-- [Parent Volunteers]
-- [Sponsor Organizations]
-
-### Our Families
-For supporting our passion, driving us to meetings, and believing in our innovation.
-
-**[INSERT PHOTO: Team Thank You Picture]**
-
----
-
-# APPENDICES
-
-## Appendix A: Email Correspondence
-
-### Email Exchange #1: [Expert Name]
 
 **From:** Team PowerSurge Storm  
-**To:** [Expert Email]  
-**Date:** [Date]  
-**Subject:** [Subject Line]
-
-**[FULL EMAIL CHAIN WILL BE INSERTED HERE]**
+**To:** powersurge.storm@gmail.com  
+**Date:** December, 2025 
 
 ---
 
-### Email Exchange #2: [Expert Name]
-
-**From:** Team PowerSurge Storm  
-**To:** [Expert Email]  
-**Date:** [Date]  
-**Subject:** [Subject Line]
-
-**[FULL EMAIL CHAIN WILL BE INSERTED HERE]**
-
----
-
-### Email Exchange #3: [Expert Name]
-
-**From:** Team PowerSurge Storm  
-**To:** [Expert Email]  
-**Date:** [Date]  
-**Subject:** [Subject Line]
-
-**[FULL EMAIL CHAIN WILL BE INSERTED HERE]**
-
----
-
-*(Continue for all email exchanges)*
-
----
-
-## Appendix B: Research Photos
-
-### Field Museum Visit
-**[INSERT 6-8 PHOTOS]**
-
-### Archaeological Survey of Illinois
-**[INSERT 6-8 PHOTOS]**
-
-### Expert Meetings
-**[INSERT 4-6 PHOTOS]**
-
-### Team Meetings & Work Sessions
-**[INSERT 6-8 PHOTOS]**
-
-### Community Service
-**[INSERT 3-4 PHOTOS]**
-
-### Presentation Practice
-**[INSERT 3-4 PHOTOS]**
-
----
-
-## Appendix C: Design Sketches & Iterations
-
-**[INSERT SKETCHES AND DESIGN DRAWINGS]**
-
----
-
-## Appendix D: Technical Diagrams
-
-**[INSERT TECHNICAL DIAGRAMS]**
-
----
-
-## Appendix E: Cost Analysis Details
-
-**[INSERT DETAILED COST BREAKDOWN SPREADSHEET]**
-
----
-
-## Appendix F: Project Timeline
-
-**[INSERT DETAILED GANTT CHART OR TIMELINE]**
-
----
 
 # CONTACT INFORMATION
 
 **Team PowerSurge Storm**  
-**Season:** 2024-2025 FIRST LEGO League  
+**Season:** 2025-2026 LEGO League  
 **Theme:** Submerged
 
-**Contact:** [Team Email]  
-**Demo Link:** [Published Interface URL]
-
 ---
-
-**Document Version:** 1.0  
-**Last Updated:** December 2024  
-**Prepared By:** Team PowerSurge Storm
-
 ---
 
 *This innovation project documentation represents original research and development by Team PowerSurge Storm for the FIRST LEGO League 2024-2025 season. All content, designs, and innovations are the intellectual property of the team.*
