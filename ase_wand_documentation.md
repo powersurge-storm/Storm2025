@@ -3,6 +3,9 @@
 ## FIRST LEGO League 2025-2026 Season
 ### Team PowerSurge Storm
 
+<img width="332" height="495" alt="Screenshot 2025-12-05 at 11 33 25 PM" src="https://github.com/user-attachments/assets/46564d03-619a-43a5-9a87-95468393cb84" />
+
+
 ---
 
 <div style="text-align: center; padding: 40px;">
