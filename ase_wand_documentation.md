@@ -14,7 +14,7 @@
 
 **Team PowerSurge Storm**
 
-*Submerged Theme - 2025-2026*
+*Unearthed Theme - 2025-2026*
 
 ---
 ![TeamPic](https://github.com/user-attachments/assets/eb3856ed-0637-45d5-9b3e-b3a15744b944)
@@ -1156,7 +1156,7 @@ The **ASE Wand** represents more than just a technical innovation—it's a pract
 
 **Team PowerSurge Storm**  
 **Season:** 2025-2026 LEGO League  
-**Theme:** Submerged
+**Theme:** Unearthed
 
 ---
 ---
