@@ -495,28 +495,61 @@
         }
         
         async function startCamera(videoId) {
-            try {
-                const video = document.getElementById(videoId);
-                videoStream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: 'environment' } // Force back camera
-                });
-                video.srcObject = videoStream;
-            } catch (error) {
-                console.error('Camera error:', error);
-            }
-        }
+    try {
+        const video = document.getElementById(videoId);
         
-        async function startCamera2(videoId) {
-            try {
-                const video = document.getElementById(videoId);
-                videoStream2 = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: 'environment' } // Force back camera
-                });
-                video.srcObject = videoStream2;
-            } catch (error) {
-                console.error('Camera error:', error);
+        const constraints = {
+            video: {
+                facingMode: 'environment',
+                width: { ideal: 1280 },
+                height: { ideal: 720 }
             }
-        }
+        };
+        
+        videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+        video.srcObject = videoStream;
+        
+        // Ensure video plays and is ready
+        return new Promise((resolve) => {
+            video.onloadedmetadata = () => {
+                video.play();
+                resolve();
+            };
+        });
+        
+    } catch (error) {
+        console.error('Camera error:', error);
+        updateStatus('artifact', '❌', 'Camera failed: ' + error.message);
+    }
+}
+
+async function startCamera2(videoId) {
+    try {
+        const video = document.getElementById(videoId);
+        
+        const constraints = {
+            video: {
+                facingMode: 'environment',
+                width: { ideal: 1280 },
+                height: { ideal: 720 }
+            }
+        };
+        
+        videoStream2 = await navigator.mediaDevices.getUserMedia(constraints);
+        video.srcObject = videoStream2;
+        
+        return new Promise((resolve) => {
+            video.onloadedmetadata = () => {
+                video.play();
+                resolve();
+            };
+        });
+        
+    } catch (error) {
+        console.error('Camera error:', error);
+        updateStatus('site', '❌', 'Camera failed: ' + error.message);
+    }
+}
         
         async function loadArtifactModel() {
             const modelURL = document.getElementById('artifactModelURL').value.trim();
@@ -638,52 +671,122 @@
         // ==================== ARTIFACT ====================
         
         async function captureArtifact() {
-            if (!artifactModel) {
-                alert('Model not loaded');
-                return;
-            }
-            
-            const video = document.getElementById('videoPreview');
-            if (!video.srcObject) {
-                await startCamera('videoPreview');
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-            
-            updateStatus('artifact', '🤖', 'AI analyzing...');
-            
-            try {
-                const canvas = document.createElement('canvas');
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                canvas.getContext('2d').drawImage(video, 0, 0);
-                
-                const prediction = await artifactModel.predict(canvas);
-                prediction.sort((a, b) => b.probability - a.probability);
-                
-                const result = {
-                    label: prediction[0].className,
-                    confidence: prediction[0].probability,
-                    confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10,
-                    all: prediction.map(p => ({
-                        label: p.className,
-                        conf: Math.round(p.probability * 100 * 10) / 10
-                    }))
-                };
-                
-                // Add to session
-                sessionData.artifacts.push({
-                    timestamp: new Date().toLocaleTimeString(),
-                    ...result
-                });
-                
-                // Speak result
-                speak(`Detected ${result.label} with ${result.confidence_percent} percent confidence`);
-                
-                displayArtifactResults(result);
-            } catch (error) {
-                updateStatus('artifact', '❌', error.message);
-            }
-        }
+    if (!artifactModel) {
+        alert('Model not loaded');
+        return;
+    }
+    
+    const video = document.getElementById('videoPreview');
+    
+    // Ensure camera is started
+    if (!video.srcObject) {
+        await startCamera('videoPreview');
+    }
+    
+    // Wait for video to have dimensions
+    if (video.videoWidth === 0 || video.videoHeight === 0) {
+        updateStatus('artifact', '⏳', 'Waiting for camera...');
+        await new Promise(resolve => {
+            const checkVideo = setInterval(() => {
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                    clearInterval(checkVideo);
+                    resolve();
+                }
+            }, 100);
+        });
+    }
+    
+    updateStatus('artifact', '🤖', 'AI analyzing...');
+    
+    try {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        
+        const prediction = await artifactModel.predict(canvas);
+        prediction.sort((a, b) => b.probability - a.probability);
+        
+        const result = {
+            label: prediction[0].className,
+            confidence: prediction[0].probability,
+            confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10,
+            all: prediction.map(p => ({
+                label: p.className,
+                conf: Math.round(p.probability * 100 * 10) / 10
+            }))
+        };
+        
+        sessionData.artifacts.push({
+            timestamp: new Date().toLocaleTimeString(),
+            ...result
+        });
+        
+        speak(`Detected ${result.label} with ${result.confidence_percent} percent confidence`);
+        
+        displayArtifactResults(result);
+    } catch (error) {
+        console.error(error);
+        updateStatus('artifact', '❌', error.message);
+    }
+}
+
+async function captureSite() {
+    if (!siteModel) {
+        alert('Site model not loaded');
+        return;
+    }
+    
+    const video = document.getElementById('videoPreview2');
+    
+    if (!video.srcObject) {
+        await startCamera2('videoPreview2');
+    }
+    
+    // Wait for video dimensions
+    if (video.videoWidth === 0 || video.videoHeight === 0) {
+        updateStatus('site', '⏳', 'Waiting for camera...');
+        await new Promise(resolve => {
+            const checkVideo = setInterval(() => {
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                    clearInterval(checkVideo);
+                    resolve();
+                }
+            }, 100);
+        });
+    }
+    
+    updateStatus('site', '🤖', 'AI analyzing...');
+    
+    try {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        
+        const prediction = await siteModel.predict(canvas);
+        prediction.sort((a, b) => b.probability - a.probability);
+        
+        const result = {
+            label: prediction[0].className,
+            confidence: prediction[0].probability,
+            confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10
+        };
+        
+        sessionData.sites.push({
+            timestamp: new Date().toLocaleTimeString(),
+            ...result
+        });
+        
+        speak(`Site classified as ${result.label}`);
+        displaySiteResults(result);
+    } catch (error) {
+        console.error(error);
+        updateStatus('site', '❌', error.message);
+    }
+}
         
         async function captureFromPi(type) {
             updateStatus(type, '📸', 'Pi capturing...');
@@ -782,48 +885,7 @@
         }
         
         // ==================== SITE ====================
-        
-        async function captureSite() {
-            if (!siteModel) {
-                alert('Site model not loaded');
-                return;
-            }
-            
-            const video = document.getElementById('videoPreview2');
-            if (!video.srcObject) {
-                await startCamera2('videoPreview2');
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-            
-            updateStatus('site', '🤖', 'AI analyzing...');
-            
-            try {
-                const canvas = document.createElement('canvas');
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                canvas.getContext('2d').drawImage(video, 0, 0);
                 
-                const prediction = await siteModel.predict(canvas);
-                prediction.sort((a, b) => b.probability - a.probability);
-                
-                const result = {
-                    label: prediction[0].className,
-                    confidence: prediction[0].probability,
-                    confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10
-                };
-                
-                sessionData.sites.push({
-                    timestamp: new Date().toLocaleTimeString(),
-                    ...result
-                });
-                
-                speak(`Site classified as ${result.label}`);
-                displaySiteResults(result);
-            } catch (error) {
-                updateStatus('site', '❌', error.message);
-            }
-        }
-        
         function displaySiteResults(result) {
             const cc = result.confidence > 0.8 ? 'confidence-high' :
                        result.confidence > 0.6 ? 'confidence-med' : 'confidence-low';
