@@ -330,6 +330,14 @@
         </button>
         <div id="configContent" class="config-content">
             <div class="config-section">
+                <button class="action-btn secondary" onclick="showNgrokUrl()" style="margin-bottom: 15px;">
+                    🔗 GET CURRENT NGROK URL
+                </button>
+                <div id="ngrokUrl" class="hidden" style="background: rgba(139,115,85,0.3); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 14px; color: #a0826d; margin-bottom: 5px;">Current ngrok URL:</div>
+                    <div id="ngrokUrlText" style="font-size: 16px; color: #d4a574; word-break: break-all;"></div>
+                    <button class="action-btn" style="margin-top: 10px;" onclick="copyNgrokUrl()">📋 COPY URL</button>
+                </div>
                 <label>Pi IP Address:</label>
                 <input type="text" id="piIP" value="192.168.86.33">
                 
@@ -337,16 +345,16 @@
                 <input type="text" id="artifactModelURL" value="https://teachablemachine.withgoogle.com/models/tR7XPvCbg/">
                 
                 <label style="margin-top: 12px;">Site Model:</label>
-                <input type="text" id="siteModelURL" value="" placeholder="Optional">
+                <input type="text" id="siteModelURL" value="https://teachablemachine.withgoogle.com/models/6WYaYL0iZ/" placeholder="https://teachablemachine.withgoogle.com/models/6WYaYL0iZ/">
             </div>
         </div>
         
         <!-- Tabs -->
         <div class="tabs">
             <div class="tab active" onclick="showTab('record')">🎤 Record</div>
-            <div class="tab" onclick="showTab('artifact')">🏺 Artifact <span class="badge">AI</span></div>
             <div class="tab" onclick="showTab('site')">🗺️ Site <span class="badge">AI</span></div>
-            <div class="tab" onclick="showTab('lidar')">📡 LiDAR</div>
+            <div class="tab" onclick="showTab('lidar')">📡 Depth Map<span class="badge">LiDAR</span></div>
+            <div class="tab" onclick="showTab('artifact')">🏺 Artifact <span class="badge">GPR</span></div>
         </div>
         
         <!-- Recording Tab -->
@@ -696,7 +704,39 @@ function drawDepthMap(depthData) {
         updateStatus('artifact', '❌', 'Camera failed: ' + error.message);
     }
 }
+async function showNgrokUrl() {
+    try {
+        // First try from ngrok directly if on same network
+        const resp = await fetch('http://raghavspi.local:4040/api/tunnels');
+        const data = await resp.json();
+        const httpsUrl = data.tunnels.find(t => t.proto === 'https')?.public_url;
+        
+        if (httpsUrl) {
+            document.getElementById('ngrokUrlText').textContent = httpsUrl;
+            document.getElementById('ngrokUrl').classList.remove('hidden');
+            return;
+        }
+    } catch (e) {
+        // Fallback to Flask API endpoint
+        try {
+            const piIP = document.getElementById('piIP').value.trim() || 'https://raghavspi.local:5000';
+            const resp = await fetch(`${piIP}/api/ngrok-url`, {
+                headers: { 'ngrok-skip-browser-warning': 'true' }
+            });
+            const data = await resp.json();
+            document.getElementById('ngrokUrlText').textContent = data.url;
+            document.getElementById('ngrokUrl').classList.remove('hidden');
+        } catch (err) {
+            alert('Could not get ngrok URL. Make sure Pi is connected!');
+        }
+    }
+}
 
+function copyNgrokUrl() {
+    const url = document.getElementById('ngrokUrlText').textContent;
+    navigator.clipboard.writeText(url);
+    alert('✅ Copied to clipboard!');
+}
 async function startCamera2(videoId) {
     try {
         const video = document.getElementById(videoId);
@@ -1086,7 +1126,13 @@ async function captureSite() {
     updateStatus('lidar', '📡', 'Scanning...');
     
     try {
-        const res = await fetch(`https://${getPiIP()}:5000/api/lidar`);
+        const res = await fetch(`https://deborah-grandparental-lauri.ngrok-free.dev/api/lidar`, {
+        //const res = await fetch(`https://${getPiIP()}:5000/api/lidar`, {
+            headers: {
+                'ngrok-skip-browser-warning': 'true'
+            }
+        });
+        
         if (!res.ok) throw new Error('Scan failed');
         
         const data = await res.json();
@@ -1097,9 +1143,10 @@ async function captureSite() {
             depth_map: data.lidar.depth_map
         });
         
-        // Draw visual depth map (8x8 heatmap!)
+        // Draw 3D depth map
         drawDepthMap(data.lidar.depth_map);
         
+        // Display results
         const div = document.getElementById('lidar-results');
         div.innerHTML = `
             <div class="result-item">
@@ -1112,7 +1159,7 @@ async function captureSite() {
             </div>
             <div class="result-item">
                 <div class="result-label">Motion</div>
-                <div class="result-value">${data.imu.motion_detected ? '🔴 YES' : '🟢 NO'}</div>
+                <div class="result-value">${data.imu.motion_detected ? '🔴 DETECTED' : '🟢 STABLE'}</div>
             </div>
             <div class="result-item">
                 <div class="result-label">Acceleration</div>
@@ -1128,6 +1175,7 @@ async function captureSite() {
         updateStatus('lidar', '✅', 'Complete');
         
     } catch (error) {
+        console.error('LiDAR error:', error);
         updateStatus('lidar', '❌', error.message);
     }
 }
