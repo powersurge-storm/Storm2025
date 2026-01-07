@@ -339,7 +339,10 @@
                     <button class="action-btn" style="margin-top: 10px;" onclick="copyNgrokUrl()">📋 COPY URL</button>
                 </div>
                 <label>Pi IP Address:</label>
-                <input type="text" id="piIP" value="192.168.86.33">
+                <!-- <input type="text" id="piIP" value="https://172.20.10.5:5000">
+                <input type="text" id="piIP" value="https://192.168.86.33:5000"> -->
+                <input type="text" id="piIP" value="https://deborah-grandparental-lauri.ngrok-free.dev">
+
                 
                 <label style="margin-top: 12px;">Artifact Model:</label>
                 <input type="text" id="artifactModelURL" value="https://teachablemachine.withgoogle.com/models/tR7XPvCbg/">
@@ -646,7 +649,19 @@ function drawDepthMap(depthData) {
         }
         
         function getPiIP() {
-            return document.getElementById('piIP').value.trim();
+            var piIPAddress = document.getElementById('piIP').value.trim();
+            return piIPAddress;
+        }
+        function getPiURL() {
+            var piIPAddress = document.getElementById('piIP').value.trim();
+            if(piIPAddress.startsWith('http'))
+            {
+                return piIPAddress;
+            }
+            else{
+                piIPAddress = `https://${piIPAddress}:5000`
+                return piIPAddress;
+            }
         }
         
         function showTab(tabName) {
@@ -822,7 +837,7 @@ async function startCamera2(videoId) {
             document.getElementById('record-results').classList.add('hidden');
             
             try {
-                const response = await fetch(`https://${getPiIP()}:5000/api/record`, {
+                const response = await fetch(`${getPiURL()}/api/record`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({duration: 10})
@@ -1006,14 +1021,14 @@ async function captureSite() {
             updateStatus(type, '📸', 'Pi capturing...');
             
             try {
-                const res = await fetch(`https://${getPiIP()}:5000/api/capture`, {
+                const res = await fetch(`${getPiURL()}/api/capture`, {
                     method: 'POST'
                 });
                 
                 if (!res.ok) throw new Error('Capture failed');
                 
                 const data = await res.json();
-                const imgUrl = `https://${getPiIP()}:5000/api/image/${data.filename}`;
+                const imgUrl = `${getPiURL()}/api/image/${data.filename}`;
                 
                 updateStatus(type, '🤖', 'AI analyzing...');
                 
@@ -1127,7 +1142,7 @@ async function captureSite() {
     
     try {
         const res = await fetch(`https://deborah-grandparental-lauri.ngrok-free.dev/api/lidar`, {
-        //const res = await fetch(`https://${getPiIP()}:5000/api/lidar`, {
+        //const res = await fetch(`${getPiURL()}/api/lidar`, {
             headers: {
                 'ngrok-skip-browser-warning': 'true'
             }
@@ -1247,7 +1262,7 @@ async function captureSite() {
 
 async function sendToLab() {
     try {
-        const response = await fetch(`https://${getPiIP()}:5000/api/send-to-lab`, {
+        const response = await fetch(`${getPiURL()}/api/send-to-lab`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(sessionData)
