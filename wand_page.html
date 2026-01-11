@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -21,75 +22,200 @@
             background: linear-gradient(135deg, #2c1810 0%, #4a3728 50%, #6b4e3d 100%);
             min-height: 100vh;
             color: #f5e6d3;
-            padding: 10px;
+            overflow: hidden;
         }
         
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
+        .app-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
         }
         
-        .header {
+        /* LEFT SIDEBAR */
+        .sidebar {
+            width: 120px;
+            background: rgba(30, 20, 10, 0.98);
+            border-right: 3px solid #8b7355;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 5px;
+            overflow-y: auto;
+        }
+        
+        .logo {
             text-align: center;
-            padding: 20px 15px;
-            background: rgba(30, 20, 10, 0.95);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            border: 2px solid #8b7355;
+            padding: 10px 5px 15px 5px;
+            border-bottom: 2px solid #8b7355;
+            margin-bottom: 10px;
         }
         
-        .header h1 {
-            font-size: clamp(24px, 6vw, 32px);
+        .logo h1 {
+            font-size: 20px;
             color: #d4a574;
-            margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
         }
         
-        .header .subtitle {
-            font-size: clamp(11px, 3vw, 14px);
+        .logo .subtitle {
+            font-size: 9px;
             color: #a0826d;
             font-style: italic;
         }
         
-        .config-toggle {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: rgba(30, 20, 10, 0.8);
+        .nav-tabs {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .nav-tab {
+            padding: 12px 8px;
+            background: rgba(60, 40, 20, 0.6);
             border: 2px solid #8b7355;
             border-radius: 8px;
-            color: #d4a574;
-            font-size: clamp(13px, 3.5vw, 15px);
-            cursor: pointer;
-            margin-bottom: 10px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 11px;
+            color: #f5e6d3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
         }
         
-        .config-content {
-            max-height: 0;
+        .nav-tab .icon {
+            font-size: 24px;
+        }
+        
+        .nav-tab .label {
+            font-size: 10px;
+            line-height: 1.2;
+        }
+        
+        .nav-tab.active {
+            background: linear-gradient(135deg, #8b6914 0%, #6b5412 100%);
+            border-color: #d4a574;
+            box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+            transform: translateX(5px);
+        }
+        
+        .config-btn {
+            padding: 10px;
+            background: rgba(60, 40, 20, 0.6);
+            border: 2px solid #8b7355;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            color: #d4a574;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .config-btn:hover {
+            background: rgba(80, 60, 30, 0.8);
+        }
+        
+        /* MAIN CONTENT AREA */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            transition: max-height 0.3s ease;
         }
         
-        .config-content.open {
-            max-height: 500px;
+        .header {
+            background: rgba(30, 20, 10, 0.95);
+            padding: 8px 15px;
+            border-bottom: 2px solid #8b7355;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-title {
+            font-size: 16px;
+            color: #d4a574;
+            font-weight: bold;
+        }
+        
+        .header-status {
+            font-size: 12px;
+            color: #a0826d;
+        }
+        
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        /* CONFIG MODAL */
+        .config-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .config-modal.open {
+            display: flex;
+        }
+        
+        .config-panel {
+            background: rgba(30, 20, 10, 0.98);
+            border: 3px solid #8b7355;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .config-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8b7355;
+        }
+        
+        .config-header h2 {
+            font-size: 20px;
+            color: #d4a574;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #d4a574;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
         }
         
         .config-section {
-            background: rgba(30, 20, 10, 0.9);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #8b7355;
+            margin-bottom: 20px;
         }
         
         .config-section label {
             display: block;
             margin-bottom: 6px;
             color: #a0826d;
-            font-size: clamp(12px, 3vw, 14px);
+            font-size: 13px;
             font-weight: bold;
         }
         
@@ -100,41 +226,12 @@
             border: 2px solid #8b7355;
             border-radius: 6px;
             color: #f5e6d3;
-            font-size: clamp(13px, 3.5vw, 16px);
+            font-size: 14px;
             font-family: monospace;
-        }
-        
-        .tabs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.tab {
-    padding: 8px 4px;
-    background: rgba(30, 20, 10, 0.8);
-    border: 2px solid #8b7355;
-    border-radius: 6px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: clamp(11px, 2.8vw, 13px);
-    color: #f5e6d3;
-}
-        
-        .tab.active {
-            background: linear-gradient(135deg, #8b6914 0%, #6b5412 100%);
-            border-color: #d4a574;
-            box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
         }
         
         .tab-content {
             display: none;
-            background: rgba(30, 20, 10, 0.95);
-            padding: 20px 15px;
-            border-radius: 12px;
-            border: 2px solid #8b7355;
         }
         
         .tab-content.active {
@@ -142,7 +239,7 @@
         }
         
         .tab-content h2 {
-            font-size: clamp(18px, 5vw, 22px);
+            font-size: 20px;
             color: #d4a574;
             margin-bottom: 15px;
             text-align: center;
@@ -152,12 +249,12 @@
         
         .action-btn {
             width: 100%;
-            padding: 16px 12px;
+            padding: 14px 12px;
             background: linear-gradient(135deg, #8b6914 0%, #6b5412 100%);
             border: 2px solid #d4a574;
             border-radius: 10px;
             color: #f5e6d3;
-            font-size: clamp(14px, 4vw, 16px);
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             margin: 8px 0;
@@ -192,7 +289,7 @@
         
         .status-card {
             background: rgba(139, 115, 85, 0.2);
-            padding: 20px 15px;
+            padding: 15px;
             border-radius: 10px;
             border: 2px solid #8b7355;
             margin: 15px 0;
@@ -200,12 +297,12 @@
         }
         
         .status-icon {
-            font-size: clamp(32px, 10vw, 48px);
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 8px;
         }
         
         .status-text {
-            font-size: clamp(14px, 4vw, 16px);
+            font-size: 14px;
             color: #f5e6d3;
             line-height: 1.4;
         }
@@ -219,23 +316,23 @@
         }
         
         .result-item {
-            margin: 12px 0;
-            padding: 12px;
+            margin: 10px 0;
+            padding: 10px;
             background: rgba(0,0,0,0.3);
             border-radius: 8px;
             border-left: 4px solid #d4a574;
         }
         
         .result-label {
-            font-size: clamp(11px, 3vw, 13px);
+            font-size: 11px;
             color: #a0826d;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             letter-spacing: 1px;
         }
         
         .result-value {
-            font-size: clamp(14px, 4vw, 16px);
+            font-size: 14px;
             color: #f5e6d3;
             line-height: 1.5;
             word-wrap: break-word;
@@ -253,11 +350,10 @@
             display: inline-block;
             background: #8b6914;
             color: #f5e6d3;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: clamp(9px, 2.5vw, 11px);
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 8px;
             font-weight: bold;
-            margin-left: 6px;
             border: 1px solid #d4a574;
         }
         
@@ -265,352 +361,342 @@
             display: none;
         }
         
-        /* Video Preview */
-        #videoPreview {
+        #videoPreview, #videoPreview2 {
             width: 100%;
-            max-height: 300px;
+            max-height: 250px;
             border-radius: 10px;
             border: 2px solid #8b7355;
             margin: 10px 0;
         }
         
-        .depth-map-canvas {
-            width: 100%;
-            height: 200px;
-            border: 2px solid #8b7355;
-            border-radius: 10px;
-            background: rgba(0,0,0,0.5);
-        }
-        
-        /* Summary Section */
         .summary-section {
             background: rgba(30, 20, 10, 0.95);
-            padding: 20px;
+            padding: 15px;
             border-radius: 12px;
             border: 2px solid #d4a574;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         
         .summary-section h3 {
             color: #d4a574;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-align: center;
-            font-size: clamp(18px, 5vw, 22px);
+            font-size: 18px;
         }
         
         .session-item {
-            padding: 12px;
+            padding: 10px;
             background: rgba(0,0,0,0.4);
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 8px 0;
             border-left: 4px solid #8b6914;
         }
         
-        @media (max-width: 480px) {
-            body { padding: 5px; }
-            .header { padding: 15px 10px; }
-            .config-section { padding: 12px; }
-            .tabs { gap: 6px; }
-            .tab { padding: 10px 6px; }
-            .tab-content { padding: 15px 12px; }
+        @media (max-height: 500px) {
+            .sidebar { width: 100px; padding: 5px 3px; }
+            .logo h1 { font-size: 16px; }
+            .logo .subtitle { font-size: 8px; }
+            .nav-tab { padding: 8px 5px; }
+            .nav-tab .icon { font-size: 20px; }
+            .nav-tab .label { font-size: 9px; }
+            .header { padding: 5px 10px; }
+            .content-area { padding: 10px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>⚱️ ASE WAND</h1>
-            <div class="subtitle">Archaeological Survey & Excavation</div>
+    <div class="app-container">
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo">
+                <h1>⚱️ ASE</h1>
+                <div class="subtitle">Field Wand</div>
+            </div>
+            
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="showTab('record')">
+                    <div class="icon">🎤</div>
+                    <div class="label">Record</div>
+                </div>
+                
+                <div class="nav-tab" onclick="showTab('site')">
+                    <div class="icon">🗺️</div>
+                    <div class="label">Site<br><span class="badge">AI</span></div>
+                </div>
+                
+                <div class="nav-tab" onclick="showTab('lidar')">
+                    <div class="icon">📡</div>
+                    <div class="label">Depth<br><span class="badge">LiDAR</span></div>
+                </div>
+                
+                <div class="nav-tab" onclick="showTab('artifact')">
+                    <div class="icon">🏺</div>
+                    <div class="label">Artifact<br><span class="badge">GPR</span></div>
+                </div>
+            </div>
+            
+            <div class="config-btn" onclick="toggleConfig()">⚙️</div>
         </div>
         
-        <!-- Configuration -->
-        <button class="config-toggle" onclick="toggleConfig()">
-            ⚙️ Configuration
-        </button>
-        <div id="configContent" class="config-content">
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="header">
+                <div class="header-title" id="headerTitle">Voice Recording</div>
+                <div class="header-status" id="headerStatus">Ready</div>
+            </div>
+            
+            <div class="content-area">
+                <!-- Recording Tab -->
+                <div id="tab-record" class="tab-content active">
+                    <div class="status-card" id="record-status">
+                        <div class="status-icon">🎤</div>
+                        <div class="status-text">Ready to record</div>
+                    </div>
+                    <button id="recordBtn" class="action-btn" onclick="startRecording()">
+                        🔴 START RECORDING
+                    </button>
+                    <div id="record-results" class="results-box hidden"></div>
+                </div>
+                
+                <!-- Artifact Detection Tab -->
+                <div id="tab-artifact" class="tab-content">
+                    <div class="status-card" id="artifact-status">
+                        <div class="status-icon">🏺</div>
+                        <div class="status-text">Loading AI...</div>
+                    </div>
+                    
+                    <video id="videoPreview" autoplay playsinline></video>
+                    
+                    <button class="action-btn" onclick="captureArtifact()">
+                        📷 CAPTURE & DETECT
+                    </button>
+                    
+                    <button class="action-btn secondary" onclick="captureFromPi('artifact')">
+                        📸 USE PI CAMERA
+                    </button>
+                    
+                    <div id="artifact-results" class="results-box hidden"></div>
+                </div>
+                
+                <!-- Site Detection Tab -->
+                <div id="tab-site" class="tab-content">
+                    <div class="status-card" id="site-status">
+                        <div class="status-icon">🗺️</div>
+                        <div class="status-text">Loading AI...</div>
+                    </div>
+                    
+                    <video id="videoPreview2" autoplay playsinline></video>
+                    
+                    <button class="action-btn" onclick="captureSite()">
+                        📷 CAPTURE & DETECT
+                    </button>
+                    
+                    <button class="action-btn secondary" onclick="captureFromPi('site')">
+                        📸 USE PI CAMERA
+                    </button>
+                    
+                    <div id="site-results" class="results-box hidden"></div>
+                </div>
+                
+                <!-- LiDAR Tab -->
+                <div id="tab-lidar" class="tab-content">
+                    <div class="status-card" id="lidar-status">
+                        <div class="status-icon">📡</div>
+                        <div class="status-text">Ready to scan</div>
+                    </div>
+                    
+                    <div id="depthCanvas" style="width:100%; height:280px; border:2px solid #8b7355; border-radius:10px; background:#1a1410; margin:10px 0;"></div>
+                    
+                    <button class="action-btn" onclick="scanLidar()">
+                        📏 RUN SCAN
+                    </button>
+                    
+                    <div id="lidar-results" class="results-box hidden"></div>
+                </div>
+                
+                <!-- Summary Button -->
+                <button class="action-btn" style="background: linear-gradient(135deg, #2d5016 0%, #1a3d0a 100%); border-color: #6b8e23; margin-top: 20px;" onclick="showSummary()">
+                    📋 VIEW SESSION SUMMARY
+                </button>
+                
+                <div id="sessionSummary" class="summary-section hidden"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CONFIG MODAL -->
+    <div id="configModal" class="config-modal">
+        <div class="config-panel">
+            <div class="config-header">
+                <h2>⚙️ Configuration</h2>
+                <button class="close-btn" onclick="toggleConfig()">×</button>
+            </div>
+            
             <div class="config-section">
                 <button class="action-btn secondary" onclick="showNgrokUrl()" style="margin-bottom: 15px;">
-                    🔗 GET CURRENT NGROK URL
+                    🔗 GET NGROK URL
                 </button>
                 <div id="ngrokUrl" class="hidden" style="background: rgba(139,115,85,0.3); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                    <div style="font-size: 14px; color: #a0826d; margin-bottom: 5px;">Current ngrok URL:</div>
-                    <div id="ngrokUrlText" style="font-size: 16px; color: #d4a574; word-break: break-all;"></div>
+                    <div style="font-size: 12px; color: #a0826d; margin-bottom: 5px;">Current ngrok URL:</div>
+                    <div id="ngrokUrlText" style="font-size: 14px; color: #d4a574; word-break: break-all;"></div>
                     <button class="action-btn" style="margin-top: 10px;" onclick="copyNgrokUrl()">📋 COPY URL</button>
                 </div>
-                <label>Pi IP Address:</label>
-                <!-- <input type="text" id="piIP" value="https://172.20.10.5:5000">
-                <input type="text" id="piIP" value="https://192.168.86.33:5000"> -->
+                
+                <label>Pi IP/URL:</label>
                 <input type="text" id="piIP" value="https://deborah-grandparental-lauri.ngrok-free.dev">
-
                 
                 <label style="margin-top: 12px;">Artifact Model:</label>
                 <input type="text" id="artifactModelURL" value="https://teachablemachine.withgoogle.com/models/tR7XPvCbg/">
                 
                 <label style="margin-top: 12px;">Site Model:</label>
-                <input type="text" id="siteModelURL" value="https://teachablemachine.withgoogle.com/models/6WYaYL0iZ/" placeholder="https://teachablemachine.withgoogle.com/models/6WYaYL0iZ/">
+                <input type="text" id="siteModelURL" value="https://teachablemachine.withgoogle.com/models/6WYaYL0iZ/">
             </div>
         </div>
-        
-        <!-- Tabs -->
-        <div class="tabs">
-            <div class="tab active" onclick="showTab('record')">🎤 Record</div>
-            <div class="tab" onclick="showTab('site')">🗺️ Site <span class="badge">AI</span></div>
-            <div class="tab" onclick="showTab('lidar')">📡 Depth Map<span class="badge">LiDAR</span></div>
-            <div class="tab" onclick="showTab('artifact')">🏺 Artifact <span class="badge">GPR</span></div>
-        </div>
-        
-        <!-- Recording Tab -->
-        <div id="tab-record" class="tab-content active">
-            <h2>Voice Recording</h2>
-            <div class="status-card" id="record-status">
-                <div class="status-icon">🎤</div>
-                <div class="status-text">Ready to record</div>
-            </div>
-            <button id="recordBtn" class="action-btn" onclick="startRecording()">
-                🔴 START RECORDING
-            </button>
-            <div id="record-results" class="results-box hidden"></div>
-        </div>
-        
-        <!-- Artifact Detection Tab -->
-        <div id="tab-artifact" class="tab-content">
-            <h2>Artifact Detection</h2>
-            <div class="status-card" id="artifact-status">
-                <div class="status-icon">🏺</div>
-                <div class="status-text">Loading AI...</div>
-            </div>
-            
-            <video id="videoPreview" autoplay playsinline></video>
-            
-            <button class="action-btn" onclick="captureArtifact()">
-                📷 CAPTURE & DETECT
-            </button>
-            
-            <button class="action-btn secondary" onclick="captureFromPi('artifact')">
-                📸 USE PI CAMERA
-            </button>
-            
-            <div id="artifact-results" class="results-box hidden"></div>
-        </div>
-        
-        <!-- Site Detection Tab -->
-        <div id="tab-site" class="tab-content">
-            <h2>Site Detection</h2>
-            <div class="status-card" id="site-status">
-                <div class="status-icon">🗺️</div>
-                <div class="status-text">Loading AI...</div>
-            </div>
-            
-            <video id="videoPreview2" autoplay playsinline style="width:100%; max-height:300px; border-radius:10px; border:2px solid #8b7355; margin:10px 0;"></video>
-            
-            <button class="action-btn" onclick="captureSite()">
-                📷 CAPTURE & DETECT
-            </button>
-            
-            <button class="action-btn secondary" onclick="captureFromPi('site')">
-                📸 USE PI CAMERA
-            </button>
-            
-            <div id="site-results" class="results-box hidden"></div>
-        </div>
-        
-        <!-- LiDAR Tab -->
-        <div id="tab-lidar" class="tab-content">
-            <h2>LiDAR Depth Mapping</h2>
-            <div class="status-card" id="lidar-status">
-                <div class="status-icon">📡</div>
-                <div class="status-text">Ready to scan</div>
-            </div>
-            
-            <div id="depthCanvas" style="width:100%; height:350px; border:2px solid #8b7355; border-radius:10px; background:#1a1410;"></div>            
-            
-            <button class="action-btn" onclick="scanLidar()">
-                📏 RUN SCAN
-            </button>
-            
-            <div id="lidar-results" class="results-box hidden"></div>
-        </div>
-        
-        <!-- Summary Button (always visible) -->
-        <button class="action-btn" style="background: linear-gradient(135deg, #2d5016 0%, #1a3d0a 100%); border-color: #6b8e23; margin-top: 20px;" onclick="showSummary()">
-            📋 VIEW SESSION SUMMARY
-        </button>
-        
-        <!-- Summary Section (hidden initially) -->
-        <div id="sessionSummary" class="summary-section hidden"></div>
     </div>
     
     <script>
         // Three.js 3D Depth Visualization
-let scene, camera, renderer, depthMesh, controls;
+        let scene, camera, renderer, depthMesh, controls;
 
-function init3DView() {
-    const container = document.getElementById('depthCanvas');
-    if (!container) return;
-    
-    // Clear container
-    container.innerHTML = '';
-    
-    // Scene
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x1a1410);
-    
-    // Camera
-    camera = new THREE.PerspectiveCamera(
-        50, 
-        container.offsetWidth / 350, 
-        0.1, 
-        1000
-    );
-    camera.position.set(8, 10, 12);
-    camera.lookAt(0, 0, 0);
-    
-    // Renderer
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(container.offsetWidth, 350);
-    container.appendChild(renderer.domElement);
-
-    // Simple mouse rotation
-let isDragging = false;
-let previousMousePosition = { x: 0, y: 0 };
-
-renderer.domElement.addEventListener('mousedown', () => isDragging = true);
-renderer.domElement.addEventListener('mouseup', () => isDragging = false);
-renderer.domElement.addEventListener('mousemove', (e) => {
-    if (isDragging && depthMesh) {
-        const deltaMove = {
-            x: e.offsetX - previousMousePosition.x,
-            y: e.offsetY - previousMousePosition.y
-        };
-        
-        depthMesh.rotation.z += deltaMove.x * 0.01;
-        depthMesh.rotation.x += deltaMove.y * 0.01;
-    }
-    
-    previousMousePosition = { x: e.offsetX, y: e.offsetY };
-});
-    
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
-    scene.add(ambientLight);
-    
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(10, 10, 5);
-    scene.add(directionalLight);
-    
-    const directionalLight2 = new THREE.DirectionalLight(0x8888ff, 0.4);
-    directionalLight2.position.set(-10, 5, -5);
-    scene.add(directionalLight2);
-    
-    // Grid helper
-    const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
-    scene.add(gridHelper);
-    
-    // Axes helper (optional - shows X, Y, Z axes)
-    const axesHelper = new THREE.AxesHelper(5);
-    scene.add(axesHelper);
-    
-    // Animation loop
-    function animate() {
-        requestAnimationFrame(animate);
-        if (depthMesh) {
-            depthMesh.rotation.z += 0.003; // Slow rotation
-        }
-        renderer.render(scene, camera);
-    }
-    animate();
-    
-    // Resize handler
-    window.addEventListener('resize', () => {
-        const width = container.offsetWidth;
-        camera.aspect = width / 350;
-        camera.updateProjectionMatrix();
-        renderer.setSize(width, 350);
-    });
-}
-
-function drawDepthMap(depthData) {
-    if (!scene) {
-        init3DView();
-        // Wait a bit for scene to initialize
-        setTimeout(() => drawDepthMap(depthData), 100);
-        return;
-    }
-    
-    if (!depthData || !Array.isArray(depthData) || depthData.length !== 8) {
-        console.warn('Invalid depth data');
-        return;
-    }
-    
-    // Remove old mesh
-    if (depthMesh) {
-        scene.remove(depthMesh);
-        depthMesh.geometry.dispose();
-        depthMesh.material.dispose();
-    }
-    
-    // Create geometry from depth data
-    const geometry = new THREE.PlaneGeometry(8, 8, 7, 7);
-    const positions = geometry.attributes.position.array;
-    
-    // Find min/max for better scaling
-    let minDist = Infinity, maxDist = -Infinity;
-    for (let row of depthData) {
-        for (let val of row) {
-            minDist = Math.min(minDist, val);
-            maxDist = Math.max(maxDist, val);
-        }
-    }
-    
-    const range = maxDist - minDist || 1;
-    
-    // Update vertices with depth data
-    const colors = [];
-    for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
-            const idx = (i * 8 + j) * 3;
-            const depth = depthData[i][j];
+        function init3DView() {
+            const container = document.getElementById('depthCanvas');
+            if (!container) return;
             
-            // Normalize and scale height
-            const normalized = (depth - minDist) / range;
-            positions[idx + 2] = normalized * 4; // Z height (0-4 units)
+            container.innerHTML = '';
             
-            // Color gradient: Blue (far) → Green → Yellow → Red (close)
-            const hue = (1 - normalized) * 0.7; // 0.7 = blue, 0 = red
-            const color = new THREE.Color().setHSL(hue, 1, 0.5);
-            colors.push(color.r, color.g, color.b);
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1410);
+            
+            camera = new THREE.PerspectiveCamera(50, container.offsetWidth / 280, 0.1, 1000);
+            camera.position.set(8, 10, 12);
+            camera.lookAt(0, 0, 0);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.offsetWidth, 280);
+            container.appendChild(renderer.domElement);
+
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+
+            renderer.domElement.addEventListener('mousedown', () => isDragging = true);
+            renderer.domElement.addEventListener('mouseup', () => isDragging = false);
+            renderer.domElement.addEventListener('mousemove', (e) => {
+                if (isDragging && depthMesh) {
+                    const deltaMove = {
+                        x: e.offsetX - previousMousePosition.x,
+                        y: e.offsetY - previousMousePosition.y
+                    };
+                    depthMesh.rotation.z += deltaMove.x * 0.01;
+                    depthMesh.rotation.x += deltaMove.y * 0.01;
+                }
+                previousMousePosition = { x: e.offsetX, y: e.offsetY };
+            });
+            
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 10, 5);
+            scene.add(directionalLight);
+            
+            const directionalLight2 = new THREE.DirectionalLight(0x8888ff, 0.4);
+            directionalLight2.position.set(-10, 5, -5);
+            scene.add(directionalLight2);
+            
+            const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
+            scene.add(gridHelper);
+            
+            const axesHelper = new THREE.AxesHelper(5);
+            scene.add(axesHelper);
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                if (depthMesh) {
+                    depthMesh.rotation.z += 0.003;
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            window.addEventListener('resize', () => {
+                const width = container.offsetWidth;
+                camera.aspect = width / 280;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, 280);
+            });
         }
-    }
-    
-    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-    geometry.computeVertexNormals();
-    
-    // Material with smooth shading
-    const material = new THREE.MeshPhongMaterial({
-        vertexColors: true,
-        side: THREE.DoubleSide,
-        shininess: 80,
-        flatShading: false
-    });
-    
-    // Create mesh
-    depthMesh = new THREE.Mesh(geometry, material);
-    depthMesh.rotation.x = -Math.PI / 2; // Lay flat
-    scene.add(depthMesh);
-    
-    // Add wireframe overlay for better visualization
-    const wireframe = new THREE.WireframeGeometry(geometry);
-    const line = new THREE.LineSegments(wireframe);
-    line.material.color.setHex(0x000000);
-    line.material.opacity = 0.2;
-    line.material.transparent = true;
-    line.rotation.x = -Math.PI / 2;
-    depthMesh.add(line);
-    
-    // Update camera to look at center
-    camera.lookAt(0, 0, 0);
-}
+
+        function drawDepthMap(depthData) {
+            if (!scene) {
+                init3DView();
+                setTimeout(() => drawDepthMap(depthData), 100);
+                return;
+            }
+            
+            if (!depthData || !Array.isArray(depthData) || depthData.length !== 8) {
+                console.warn('Invalid depth data');
+                return;
+            }
+            
+            if (depthMesh) {
+                scene.remove(depthMesh);
+                depthMesh.geometry.dispose();
+                depthMesh.material.dispose();
+            }
+            
+            const geometry = new THREE.PlaneGeometry(8, 8, 7, 7);
+            const positions = geometry.attributes.position.array;
+            
+            let minDist = Infinity, maxDist = -Infinity;
+            for (let row of depthData) {
+                for (let val of row) {
+                    minDist = Math.min(minDist, val);
+                    maxDist = Math.max(maxDist, val);
+                }
+            }
+            
+            const range = maxDist - minDist || 1;
+            
+            const colors = [];
+            for (let i = 0; i < 8; i++) {
+                for (let j = 0; j < 8; j++) {
+                    const idx = (i * 8 + j) * 3;
+                    const depth = depthData[i][j];
+                    
+                    const normalized = (depth - minDist) / range;
+                    positions[idx + 2] = normalized * 4;
+                    
+                    const hue = (1 - normalized) * 0.7;
+                    const color = new THREE.Color().setHSL(hue, 1, 0.5);
+                    colors.push(color.r, color.g, color.b);
+                }
+            }
+            
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+            geometry.computeVertexNormals();
+            
+            const material = new THREE.MeshPhongMaterial({
+                vertexColors: true,
+                side: THREE.DoubleSide,
+                shininess: 80,
+                flatShading: false
+            });
+            
+            depthMesh = new THREE.Mesh(geometry, material);
+            depthMesh.rotation.x = -Math.PI / 2;
+            scene.add(depthMesh);
+            
+            const wireframe = new THREE.WireframeGeometry(geometry);
+            const line = new THREE.LineSegments(wireframe);
+            line.material.color.setHex(0x000000);
+            line.material.opacity = 0.2;
+            line.material.transparent = true;
+            line.rotation.x = -Math.PI / 2;
+            depthMesh.add(line);
+            
+            camera.lookAt(0, 0, 0);
+        }
+
         // Session tracking
         let sessionData = {
             startTime: Date.now(),
@@ -620,14 +706,12 @@ function drawDepthMap(depthData) {
             lidarScans: []
         };
         
-        // Configuration
         let artifactModel = null;
         let siteModel = null;
         let recordingData = null;
         let videoStream = null;
         let videoStream2 = null;
         
-        // Speech synthesis
         const synth = window.speechSynthesis;
         
         function speak(text) {
@@ -638,147 +722,105 @@ function drawDepthMap(depthData) {
             synth.speak(utterance);
         }
         
-        // Load models on start
         window.addEventListener('DOMContentLoaded', async () => {
             await loadArtifactModel();
             await loadSiteModel();
         });
         
         function toggleConfig() {
-            document.getElementById('configContent').classList.toggle('open');
+            document.getElementById('configModal').classList.toggle('open');
         }
         
         function getPiIP() {
-            var piIPAddress = document.getElementById('piIP').value.trim();
-            return piIPAddress;
+            return document.getElementById('piIP').value.trim();
         }
+        
         function getPiURL() {
             var piIPAddress = document.getElementById('piIP').value.trim();
-            if(piIPAddress.startsWith('http'))
-            {
+            if(piIPAddress.startsWith('http')) {
                 return piIPAddress;
-            }
-            else{
-                piIPAddress = `https://${piIPAddress}:5000`
-                return piIPAddress;
+            } else {
+                return `https://${piIPAddress}:5000`;
             }
         }
         
         function showTab(tabName) {
-    // Stop all video streams when switching tabs
-    if (videoStream) {
-        videoStream.getTracks().forEach(track => track.stop());
-        videoStream = null;
-    }
-    if (videoStream2) {
-        videoStream2.getTracks().forEach(track => track.stop());
-        videoStream2 = null;
-    }
-    
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    
-    document.getElementById('tab-' + tabName).classList.add('active');
-    event.target.closest('.tab').classList.add('active');
-    
-    // Start camera when entering artifact/site tabs
-    if (tabName === 'artifact') startCamera('videoPreview');
-    if (tabName === 'site') startCamera2('videoPreview2');
-    
-    // Initialize 3D view when entering LiDAR tab
-    if (tabName === 'lidar') {
-        setTimeout(() => init3DView(), 100);
-    }
-}
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                videoStream = null;
+            }
+            if (videoStream2) {
+                videoStream2.getTracks().forEach(track => track.stop());
+                videoStream2 = null;
+            }
+            
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            event.target.closest('.nav-tab').classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            const titles = {
+                'record': 'Voice Recording',
+                'artifact': 'Artifact Detection',
+                'site': 'Site Detection',
+                'lidar': 'LiDAR Depth Map'
+            };
+            document.getElementById('headerTitle').textContent = titles[tabName] || tabName;
+            document.getElementById('headerStatus').textContent = 'Ready';
+            
+            if (tabName === 'artifact') startCamera('videoPreview');
+            if (tabName === 'site') startCamera2('videoPreview2');
+            if (tabName === 'lidar') setTimeout(() => init3DView(), 100);
+        }
         
         async function startCamera(videoId) {
-    try {
-        const video = document.getElementById(videoId);
-        
-        const constraints = {
-            video: {
-                facingMode: 'environment',
-                width: { ideal: 1280 },
-                height: { ideal: 720 }
+            try {
+                const video = document.getElementById(videoId);
+                const constraints = {
+                    video: {
+                        facingMode: 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                };
+                videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = videoStream;
+                return new Promise((resolve) => {
+                    video.onloadedmetadata = () => {
+                        video.play();
+                        resolve();
+                    };
+                });
+            } catch (error) {
+                console.error('Camera error:', error);
+                updateStatus('artifact', '❌', 'Camera failed: ' + error.message);
             }
-        };
-        
-        videoStream = await navigator.mediaDevices.getUserMedia(constraints);
-        video.srcObject = videoStream;
-        
-        // Ensure video plays and is ready
-        return new Promise((resolve) => {
-            video.onloadedmetadata = () => {
-                video.play();
-                resolve();
-            };
-        });
-        
-    } catch (error) {
-        console.error('Camera error:', error);
-        updateStatus('artifact', '❌', 'Camera failed: ' + error.message);
-    }
-}
-async function showNgrokUrl() {
-    try {
-        // First try from ngrok directly if on same network
-        const resp = await fetch('http://raghavspi.local:4040/api/tunnels');
-        const data = await resp.json();
-        const httpsUrl = data.tunnels.find(t => t.proto === 'https')?.public_url;
-        
-        if (httpsUrl) {
-            document.getElementById('ngrokUrlText').textContent = httpsUrl;
-            document.getElementById('ngrokUrl').classList.remove('hidden');
-            return;
         }
-    } catch (e) {
-        // Fallback to Flask API endpoint
-        try {
-            const piIP = document.getElementById('piIP').value.trim() || 'https://raghavspi.local:5000';
-            const resp = await fetch(`${piIP}/api/ngrok-url`, {
-                headers: { 'ngrok-skip-browser-warning': 'true' }
-            });
-            const data = await resp.json();
-            document.getElementById('ngrokUrlText').textContent = data.url;
-            document.getElementById('ngrokUrl').classList.remove('hidden');
-        } catch (err) {
-            alert('Could not get ngrok URL. Make sure Pi is connected!');
-        }
-    }
-}
 
-function copyNgrokUrl() {
-    const url = document.getElementById('ngrokUrlText').textContent;
-    navigator.clipboard.writeText(url);
-    alert('✅ Copied to clipboard!');
-}
-async function startCamera2(videoId) {
-    try {
-        const video = document.getElementById(videoId);
-        
-        const constraints = {
-            video: {
-                facingMode: 'environment',
-                width: { ideal: 1280 },
-                height: { ideal: 720 }
+        async function startCamera2(videoId) {
+            try {
+                const video = document.getElementById(videoId);
+                const constraints = {
+                    video: {
+                        facingMode: 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                };
+                videoStream2 = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = videoStream2;
+                return new Promise((resolve) => {
+                    video.onloadedmetadata = () => {
+                        video.play();
+                        resolve();
+                    };
+                });
+            } catch (error) {
+                console.error('Camera error:', error);
+                updateStatus('site', '❌', 'Camera failed: ' + error.message);
             }
-        };
-        
-        videoStream2 = await navigator.mediaDevices.getUserMedia(constraints);
-        video.srcObject = videoStream2;
-        
-        return new Promise((resolve) => {
-            video.onloadedmetadata = () => {
-                video.play();
-                resolve();
-            };
-        });
-        
-    } catch (error) {
-        console.error('Camera error:', error);
-        updateStatus('site', '❌', 'Camera failed: ' + error.message);
-    }
-}
+        }
         
         async function loadArtifactModel() {
             const modelURL = document.getElementById('artifactModelURL').value.trim();
@@ -786,7 +828,6 @@ async function startCamera2(videoId) {
                 updateStatus('artifact', '⚠️', 'No model URL');
                 return;
             }
-            
             try {
                 updateStatus('artifact', '⏳', 'Loading AI...');
                 const url = modelURL.endsWith('/') ? modelURL : modelURL + '/';
@@ -805,7 +846,6 @@ async function startCamera2(videoId) {
                 updateStatus('site', '⚠️', 'No model URL');
                 return;
             }
-            
             try {
                 updateStatus('site', '⏳', 'Loading AI...');
                 const url = modelURL.endsWith('/') ? modelURL : modelURL + '/';
@@ -819,13 +859,14 @@ async function startCamera2(videoId) {
         
         function updateStatus(tab, icon, text) {
             const status = document.getElementById(tab + '-status');
-            status.innerHTML = `
-                <div class="status-icon">${icon}</div>
-                <div class="status-text">${text}</div>
-            `;
+            if (status) {
+                status.innerHTML = `
+                    <div class="status-icon">${icon}</div>
+                    <div class="status-text">${text}</div>
+                `;
+            }
+            document.getElementById('headerStatus').textContent = text;
         }
-        
-        // ==================== RECORDING ====================
         
         async function startRecording() {
             const btn = document.getElementById('recordBtn');
@@ -897,125 +938,120 @@ async function startCamera2(videoId) {
             updateStatus('record', '📝', 'Displayed');
         }
         
-        // ==================== ARTIFACT ====================
-        
         async function captureArtifact() {
-    if (!artifactModel) {
-        alert('Model not loaded');
-        return;
-    }
-    
-    const video = document.getElementById('videoPreview');
-    
-    // Ensure camera is started
-    if (!video.srcObject) {
-        await startCamera('videoPreview');
-    }
-    
-    // Wait for video to have dimensions
-    if (video.videoWidth === 0 || video.videoHeight === 0) {
-        updateStatus('artifact', '⏳', 'Waiting for camera...');
-        await new Promise(resolve => {
-            const checkVideo = setInterval(() => {
-                if (video.videoWidth > 0 && video.videoHeight > 0) {
-                    clearInterval(checkVideo);
-                    resolve();
-                }
-            }, 100);
-        });
-    }
-    
-    updateStatus('artifact', '🤖', 'AI analyzing...');
-    
-    try {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0);
-        
-        const prediction = await artifactModel.predict(canvas);
-        prediction.sort((a, b) => b.probability - a.probability);
-        
-        const result = {
-            label: prediction[0].className,
-            confidence: prediction[0].probability,
-            confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10,
-            all: prediction.map(p => ({
-                label: p.className,
-                conf: Math.round(p.probability * 100 * 10) / 10
-            }))
-        };
-        
-        sessionData.artifacts.push({
-            timestamp: new Date().toLocaleTimeString(),
-            ...result
-        });
-        
-        speak(`Detected ${result.label} with ${result.confidence_percent} percent confidence`);
-        
-        displayArtifactResults(result);
-    } catch (error) {
-        console.error(error);
-        updateStatus('artifact', '❌', error.message);
-    }
-}
+            if (!artifactModel) {
+                alert('Model not loaded');
+                return;
+            }
+            
+            const video = document.getElementById('videoPreview');
+            
+            if (!video.srcObject) {
+                await startCamera('videoPreview');
+            }
+            
+            if (video.videoWidth === 0 || video.videoHeight === 0) {
+                updateStatus('artifact', '⏳', 'Waiting for camera...');
+                await new Promise(resolve => {
+                    const checkVideo = setInterval(() => {
+                        if (video.videoWidth > 0 && video.videoHeight > 0) {
+                            clearInterval(checkVideo);
+                            resolve();
+                        }
+                    }, 100);
+                });
+            }
+            
+            updateStatus('artifact', '🤖', 'AI analyzing...');
+            
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0);
+                
+                const prediction = await artifactModel.predict(canvas);
+                prediction.sort((a, b) => b.probability - a.probability);
+                
+                const result = {
+                    label: prediction[0].className,
+                    confidence: prediction[0].probability,
+                    confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10,
+                    all: prediction.map(p => ({
+                        label: p.className,
+                        conf: Math.round(p.probability * 100 * 10) / 10
+                    }))
+                };
+                
+                sessionData.artifacts.push({
+                    timestamp: new Date().toLocaleTimeString(),
+                    ...result
+                });
+                
+                speak(`Detected ${result.label} with ${result.confidence_percent} percent confidence`);
+                
+                displayArtifactResults(result);
+            } catch (error) {
+                console.error(error);
+                updateStatus('artifact', '❌', error.message);
+            }
+        }
 
-async function captureSite() {
-    if (!siteModel) {
-        alert('Site model not loaded');
-        return;
-    }
-    
-    const video = document.getElementById('videoPreview2');
-    
-    if (!video.srcObject) {
-        await startCamera2('videoPreview2');
-    }
-    
-    // Wait for video dimensions
-    if (video.videoWidth === 0 || video.videoHeight === 0) {
-        updateStatus('site', '⏳', 'Waiting for camera...');
-        await new Promise(resolve => {
-            const checkVideo = setInterval(() => {
-                if (video.videoWidth > 0 && video.videoHeight > 0) {
-                    clearInterval(checkVideo);
-                    resolve();
-                }
-            }, 100);
-        });
-    }
-    
-    updateStatus('site', '🤖', 'AI analyzing...');
-    
-    try {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0);
-        
-        const prediction = await siteModel.predict(canvas);
-        prediction.sort((a, b) => b.probability - a.probability);
-        
-        const result = {
-            label: prediction[0].className,
-            confidence: prediction[0].probability,
-            confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10
-        };
-        
-        sessionData.sites.push({
-            timestamp: new Date().toLocaleTimeString(),
-            ...result
-        });
-        
-        speak(`Site classified as ${result.label}`);
-        displaySiteResults(result);
-    } catch (error) {
-        console.error(error);
-        updateStatus('site', '❌', error.message);
-    }
-}
+        async function captureSite() {
+            if (!siteModel) {
+                alert('Site model not loaded');
+                return;
+            }
+            
+            const video = document.getElementById('videoPreview2');
+            
+            if (!video.srcObject) {
+                await startCamera2('videoPreview2');
+            }
+            
+            if (video.videoWidth === 0 || video.videoHeight === 0) {
+                updateStatus('site', '⏳', 'Waiting for camera...');
+                await new Promise(resolve => {
+                    const checkVideo = setInterval(() => {
+                        if (video.videoWidth > 0 && video.videoHeight > 0) {
+                            clearInterval(checkVideo);
+                            resolve();
+                        }
+                    }, 100);
+                });
+            }
+            
+            updateStatus('site', '🤖', 'AI analyzing...');
+            
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0);
+                
+                const prediction = await siteModel.predict(canvas);
+                prediction.sort((a, b) => b.probability - a.probability);
+                
+                const result = {
+                    label: prediction[0].className,
+                    confidence: prediction[0].probability,
+                    confidence_percent: Math.round(prediction[0].probability * 100 * 10) / 10
+                };
+                
+                sessionData.sites.push({
+                    timestamp: new Date().toLocaleTimeString(),
+                    ...result
+                });
+                
+                speak(`Site classified as ${result.label}`);
+                displaySiteResults(result);
+            } catch (error) {
+                console.error(error);
+                updateStatus('site', '❌', error.message);
+            }
+        }
         
         async function captureFromPi(type) {
             updateStatus(type, '📸', 'Pi capturing...');
@@ -1113,8 +1149,6 @@ async function captureSite() {
             updateStatus('artifact', '✅', 'Complete!');
         }
         
-        // ==================== SITE ====================
-                
         function displaySiteResults(result) {
             const cc = result.confidence > 0.8 ? 'confidence-high' :
                        result.confidence > 0.6 ? 'confidence-med' : 'confidence-low';
@@ -1135,149 +1169,169 @@ async function captureSite() {
             updateStatus('site', '✅', 'Complete!');
         }
         
-        // ==================== LIDAR ====================
-        
         async function scanLidar() {
-    updateStatus('lidar', '📡', 'Scanning...');
-    
-    try {
-        const res = await fetch(`https://deborah-grandparental-lauri.ngrok-free.dev/api/lidar`, {
-        //const res = await fetch(`${getPiURL()}/api/lidar`, {
-            headers: {
-                'ngrok-skip-browser-warning': 'true'
+            updateStatus('lidar', '📡', 'Scanning...');
+            
+            try {
+                const res = await fetch(`${getPiURL()}/api/lidar`, {
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                });
+                
+                if (!res.ok) throw new Error('Scan failed');
+                
+                const data = await res.json();
+                
+                sessionData.lidarScans.push({
+                    timestamp: new Date().toLocaleTimeString(),
+                    distance: data.lidar.distance,
+                    depth_map: data.lidar.depth_map
+                });
+                
+                drawDepthMap(data.lidar.depth_map);
+                
+                const div = document.getElementById('lidar-results');
+                div.innerHTML = `
+                    <div class="result-item">
+                        <div class="result-label">Average Distance</div>
+                        <div class="result-value">${data.lidar.distance} cm</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">IMU Tilt</div>
+                        <div class="result-value">X: ${data.imu.tilt.x}° / Y: ${data.imu.tilt.y}°</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Motion</div>
+                        <div class="result-value">${data.imu.motion_detected ? '🔴 DETECTED' : '🟢 STABLE'}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Acceleration</div>
+                        <div class="result-value">
+                            X: ${data.imu.acceleration.x} m/s²<br>
+                            Y: ${data.imu.acceleration.y} m/s²<br>
+                            Z: ${data.imu.acceleration.z} m/s²
+                        </div>
+                    </div>
+                `;
+                div.classList.remove('hidden');
+                
+                updateStatus('lidar', '✅', 'Complete');
+                
+            } catch (error) {
+                console.error('LiDAR error:', error);
+                updateStatus('lidar', '❌', error.message);
             }
-        });
-        
-        if (!res.ok) throw new Error('Scan failed');
-        
-        const data = await res.json();
-        
-        sessionData.lidarScans.push({
-            timestamp: new Date().toLocaleTimeString(),
-            distance: data.lidar.distance,
-            depth_map: data.lidar.depth_map
-        });
-        
-        // Draw 3D depth map
-        drawDepthMap(data.lidar.depth_map);
-        
-        // Display results
-        const div = document.getElementById('lidar-results');
-        div.innerHTML = `
-            <div class="result-item">
-                <div class="result-label">Average Distance</div>
-                <div class="result-value">${data.lidar.distance} cm</div>
-            </div>
-            <div class="result-item">
-                <div class="result-label">IMU Tilt</div>
-                <div class="result-value">X: ${data.imu.tilt.x}° / Y: ${data.imu.tilt.y}°</div>
-            </div>
-            <div class="result-item">
-                <div class="result-label">Motion</div>
-                <div class="result-value">${data.imu.motion_detected ? '🔴 DETECTED' : '🟢 STABLE'}</div>
-            </div>
-            <div class="result-item">
-                <div class="result-label">Acceleration</div>
-                <div class="result-value">
-                    X: ${data.imu.acceleration.x} m/s²<br>
-                    Y: ${data.imu.acceleration.y} m/s²<br>
-                    Z: ${data.imu.acceleration.z} m/s²
-                </div>
-            </div>
-        `;
-        div.classList.remove('hidden');
-        
-        updateStatus('lidar', '✅', 'Complete');
-        
-    } catch (error) {
-        console.error('LiDAR error:', error);
-        updateStatus('lidar', '❌', error.message);
-    }
-}
-        
-        
-        // ==================== SESSION SUMMARY ====================
+        }
         
         function showSummary() {
-    const summary = document.getElementById('sessionSummary');
-    
-    const duration = Math.round((Date.now() - sessionData.startTime) / 1000 / 60);
-    
-    let html = `
-        <h3>📋 Session Summary</h3>
-        <div class="session-item">
-            <div class="result-label">Session Duration</div>
-            <div class="result-value">${duration} minutes</div>
-        </div>
-    `;
-    
-    if (sessionData.recordings.length > 0) {
-        html += `<div class="session-item">
-            <div class="result-label">Recordings (${sessionData.recordings.length})</div>`;
-        sessionData.recordings.forEach((r, i) => {
-            html += `<div class="result-value">${i+1}. ${r.timestamp} - ${r.summary}</div>`;
-        });
-        html += `</div>`;
-    }
-    
-    if (sessionData.artifacts.length > 0) {
-        html += `<div class="session-item">
-            <div class="result-label">Artifacts Detected (${sessionData.artifacts.length})</div>`;
-        sessionData.artifacts.forEach((a, i) => {
-            html += `<div class="result-value">${i+1}. ${a.timestamp} - ${a.label} (${a.confidence_percent}%)</div>`;
-        });
-        html += `</div>`;
-    }
-    
-    if (sessionData.sites.length > 0) {
-        html += `<div class="session-item">
-            <div class="result-label">Sites Scanned (${sessionData.sites.length})</div>`;
-        sessionData.sites.forEach((s, i) => {
-            html += `<div class="result-value">${i+1}. ${s.timestamp} - ${s.label} (${s.confidence_percent}%)</div>`;
-        });
-        html += `</div>`;
-    }
-    
-    if (sessionData.lidarScans.length > 0) {
-        html += `<div class="session-item">
-            <div class="result-label">LiDAR Scans (${sessionData.lidarScans.length})</div>`;
-        sessionData.lidarScans.forEach((l, i) => {
-            html += `<div class="result-value">${i+1}. ${l.timestamp} - ${l.distance} cm</div>`;
-        });
-        html += `</div>`;
-    }
-    
-    html += `
-        <button class="action-btn" style="margin-top: 20px; background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);" onclick="sendToLab()">
-            📤 SEND TO LAB INTERFACE
-        </button>
-    `;
-    
-    summary.innerHTML = html;
-    summary.classList.remove('hidden');
-    
-    // Scroll to summary
-    summary.scrollIntoView({ behavior: 'smooth' });
-}
-
-async function sendToLab() {
-    try {
-        const response = await fetch(`${getPiURL()}/api/send-to-lab`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(sessionData)
-        });
-        
-        if (response.ok) {
-            alert('✅ Session data sent to Lab Interface successfully!');
-            speak('Data sent to lab');
-        } else {
-            alert('❌ Failed to send to lab');
+            const duration = Math.round((Date.now() - sessionData.startTime) / 1000 / 60);
+            
+            let html = `
+                <h3>📋 Session Summary</h3>
+                <div class="session-item">
+                    <div class="result-label">Session Duration</div>
+                    <div class="result-value">${duration} minutes</div>
+                </div>
+            `;
+            
+            if (sessionData.recordings.length > 0) {
+                html += `<div class="session-item">
+                    <div class="result-label">Recordings (${sessionData.recordings.length})</div>`;
+                sessionData.recordings.forEach((r, i) => {
+                    html += `<div class="result-value">${i+1}. ${r.timestamp} - ${r.summary}</div>`;
+                });
+                html += `</div>`;
+            }
+            
+            if (sessionData.artifacts.length > 0) {
+                html += `<div class="session-item">
+                    <div class="result-label">Artifacts Detected (${sessionData.artifacts.length})</div>`;
+                sessionData.artifacts.forEach((a, i) => {
+                    html += `<div class="result-value">${i+1}. ${a.timestamp} - ${a.label} (${a.confidence_percent}%)</div>`;
+                });
+                html += `</div>`;
+            }
+            
+            if (sessionData.sites.length > 0) {
+                html += `<div class="session-item">
+                    <div class="result-label">Sites Scanned (${sessionData.sites.length})</div>`;
+                sessionData.sites.forEach((s, i) => {
+                    html += `<div class="result-value">${i+1}. ${s.timestamp} - ${s.label} (${s.confidence_percent}%)</div>`;
+                });
+                html += `</div>`;
+            }
+            
+            if (sessionData.lidarScans.length > 0) {
+                html += `<div class="session-item">
+                    <div class="result-label">LiDAR Scans (${sessionData.lidarScans.length})</div>`;
+                sessionData.lidarScans.forEach((l, i) => {
+                    html += `<div class="result-value">${i+1}. ${l.timestamp} - ${l.distance} cm</div>`;
+                });
+                html += `</div>`;
+            }
+            
+            html += `
+                <button class="action-btn" style="margin-top: 20px; background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);" onclick="sendToLab()">
+                    📤 SEND TO LAB INTERFACE
+                </button>
+            `;
+            
+            document.getElementById('sessionSummary').innerHTML = html;
+            document.getElementById('sessionSummary').classList.remove('hidden');
+            document.getElementById('sessionSummary').scrollIntoView({ behavior: 'smooth' });
         }
-    } catch (error) {
-        alert('❌ Lab connection error: ' + error.message);
-    }
-}
+
+        async function sendToLab() {
+            try {
+                const response = await fetch(`${getPiURL()}/api/send-to-lab`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(sessionData)
+                });
+                
+                if (response.ok) {
+                    alert('✅ Session data sent to Lab Interface successfully!');
+                    speak('Data sent to lab');
+                } else {
+                    alert('❌ Failed to send to lab');
+                }
+            } catch (error) {
+                alert('❌ Lab connection error: ' + error.message);
+            }
+        }
+
+        async function showNgrokUrl() {
+            try {
+                const resp = await fetch('http://raghavspi.local:4040/api/tunnels');
+                const data = await resp.json();
+                const httpsUrl = data.tunnels.find(t => t.proto === 'https')?.public_url;
+                
+                if (httpsUrl) {
+                    document.getElementById('ngrokUrlText').textContent = httpsUrl;
+                    document.getElementById('ngrokUrl').classList.remove('hidden');
+                    return;
+                }
+            } catch (e) {
+                try {
+                    const piIP = getPiURL();
+                    const resp = await fetch(`${piIP}/api/ngrok-url`, {
+                        headers: { 'ngrok-skip-browser-warning': 'true' }
+                    });
+                    const data = await resp.json();
+                    document.getElementById('ngrokUrlText').textContent = data.url;
+                    document.getElementById('ngrokUrl').classList.remove('hidden');
+                } catch (err) {
+                    alert('Could not get ngrok URL. Make sure Pi is connected!');
+                }
+            }
+        }
+
+        function copyNgrokUrl() {
+            const url = document.getElementById('ngrokUrlText').textContent;
+            navigator.clipboard.writeText(url);
+            alert('✅ Copied to clipboard!');
+        }
     </script>
 </body>
 </html>
