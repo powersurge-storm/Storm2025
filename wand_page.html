@@ -374,7 +374,6 @@
             padding: 15px;
             border-radius: 12px;
             border: 2px solid #d4a574;
-            margin-top: 15px;
         }
         
         .summary-section h3 {
@@ -421,7 +420,7 @@
                 
                 <div class="nav-tab" onclick="showTab('site')">
                     <div class="icon">🗺️</div>
-                    <div class="label">Site<br><span class="badge">AI</span></div>
+                    <div class="label">Site<br><span class="badge">GPR</span></div>
                 </div>
                 
                 <div class="nav-tab" onclick="showTab('lidar')">
@@ -431,7 +430,12 @@
                 
                 <div class="nav-tab" onclick="showTab('artifact')">
                     <div class="icon">🏺</div>
-                    <div class="label">Artifact<br><span class="badge">GPR</span></div>
+                    <div class="label">Artifact<br><span class="badge">AI</span></div>
+                </div>
+                
+                <div class="nav-tab" onclick="showTab('summary')">
+                    <div class="icon">📋</div>
+                    <div class="label">Summary</div>
                 </div>
             </div>
             
@@ -514,12 +518,10 @@
                     <div id="lidar-results" class="results-box hidden"></div>
                 </div>
                 
-                <!-- Summary Button -->
-                <button class="action-btn" style="background: linear-gradient(135deg, #2d5016 0%, #1a3d0a 100%); border-color: #6b8e23; margin-top: 20px;" onclick="showSummary()">
-                    📋 VIEW SESSION SUMMARY
-                </button>
-                
-                <div id="sessionSummary" class="summary-section hidden"></div>
+                <!-- Summary Tab -->
+                <div id="tab-summary" class="tab-content">
+                    <div id="sessionSummary" class="summary-section"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -764,7 +766,8 @@
                 'record': 'Voice Recording',
                 'artifact': 'Artifact Detection',
                 'site': 'Site Detection',
-                'lidar': 'LiDAR Depth Map'
+                'lidar': 'LiDAR Depth Map',
+                'summary': 'Session Summary'
             };
             document.getElementById('headerTitle').textContent = titles[tabName] || tabName;
             document.getElementById('headerStatus').textContent = 'Ready';
@@ -772,6 +775,7 @@
             if (tabName === 'artifact') startCamera('videoPreview');
             if (tabName === 'site') startCamera2('videoPreview2');
             if (tabName === 'lidar') setTimeout(() => init3DView(), 100);
+            if (tabName === 'summary') showSummary();
         }
         
         async function startCamera(videoId) {
@@ -1278,8 +1282,6 @@
             `;
             
             document.getElementById('sessionSummary').innerHTML = html;
-            document.getElementById('sessionSummary').classList.remove('hidden');
-            document.getElementById('sessionSummary').scrollIntoView({ behavior: 'smooth' });
         }
 
         async function sendToLab() {
