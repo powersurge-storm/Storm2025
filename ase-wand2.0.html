@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASE Wand - Revolutionary Archaeological Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(210, 180, 140, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #2d1b00 0%, #1a1a2e 100%);
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(210, 180, 140, 0.3);
+            overflow: hidden;
+            border: 3px solid #d4af37;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #d4af37 50%, #8B4513 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "🏺 ⚱️ 🗿 📜 ⚒️";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            font-size: 2em;
+            opacity: 0.2;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .header h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: glow 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 40px rgba(212, 175, 55, 0.8); }
+        }
+
+        .header p {
+            font-size: 1.5em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #8B4513 100%);
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+            z-index: 1000;
+            font-size: 1.1em;
+            border: 2px solid #d4af37;
+        }
+
+        .toggle-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .section {
+            padding: 50px;
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        .section:nth-child(even) {
+            background: rgba(45, 27, 0, 0.3);
+        }
+
+        .section h2 {
+            color: #d4af37;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .problem-box, .solution-box {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(210, 180, 140, 0.2) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 3px solid #d4af37;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .problem-box h3, .solution-box h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .problem-box p, .problem-box ul, .solution-box p {
+            color: #e6d5b8;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .problem-box ul {
+            margin-top: 15px;
+            margin-left: 30px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.4) 0%, rgba(26, 26, 46, 0.6) 100%);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(139, 69, 19, 0.5) 100%);
+        }
+
+        .feature-card h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .feature-card p {
+            color: #d2b48c;
+            line-height: 1.7;
+        }
+
+        .form-section {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(45, 27, 0, 0.8) 100%);
+            padding: 60px 50px;
+            border-top: 5px solid #d4af37;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 18px;
+            border: 3px solid #8B4513;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-family: inherit;
+            background: rgba(26, 26, 46, 0.6);
+            color: #e6d5b8;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            background: rgba(26, 26, 46, 0.8);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 69, 19, 0.3);
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .radio-option:hover {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            cursor: pointer;
+            accent-color: #d4af37;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            margin: 0;
+            color: #d2b48c;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #8B4513 50%, #d4af37 100%);
+            background-size: 200% 100%;
+            color: white;
+            padding: 22px 60px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.4em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            width: 100%;
+            border: 3px solid #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .submit-btn:hover {
+            background-position: 100% 0;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.7);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #2d8659 0%, #45b880 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+            border: 3px solid #45b880;
+            box-shadow: 0 10px 30px rgba(69, 184, 128, 0.4);
+        }
+
+        .success-message h3 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+
+        .required {
+            color: #ff6b6b;
+        }
+
+        .responses-view {
+            display: none;
+        }
+
+        .responses-view.active {
+            display: block;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+            padding: 50px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #d4af37 0%, #8B4513 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            border: 3px solid #d4af37;
+        }
+
+        .stat-card h3 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .stat-card p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .responses-container {
+            padding: 0 50px 50px 50px;
+        }
+
+        .response-card {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.4) 0%, rgba(26, 26, 46, 0.6) 100%);
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 3px solid #8B4513;
+        }
+
+        .response-card h4 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .response-field {
+            margin-bottom: 20px;
+        }
+
+        .response-field strong {
+            color: #ffd700;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .response-field p {
+            color: #d2b48c;
+            line-height: 1.8;
+            padding-left: 15px;
+            border-left: 3px solid #8B4513;
+        }
+
+        .no-responses {
+            text-align: center;
+            padding: 80px;
+            color: #d4af37;
+            font-size: 1.5em;
+            background: rgba(139, 69, 19, 0.2);
+            border-radius: 20px;
+            border: 3px dashed #8B4513;
+        }
+
+        .timestamp {
+            color: #d4af37;
+            font-size: 1em;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles -->
+    <script>
+        for(let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            document.body.appendChild(particle);
+        }
+    </script>
+
+    <button class="toggle-btn" id="toggleBtn">📊 View Responses</button>
+
+    <div class="container">
+        <!-- SURVEY VIEW -->
+        <div id="surveyView">
+            <div class="header">
+                <h1>🔍 ASE Wand</h1>
+                <p style="font-size: 1.8em; margin-top: 15px; font-weight: bold;">Dust to Data</p>
+                <p style="font-size: 1em; margin-top: 15px; opacity: 0.9;">Revolutionary Archaeological Survey & Excavation Tool</p>
+                <p style="font-size: 0.95em; margin-top: 20px; opacity: 0.85; font-style: italic;">Presented by PowerSurge Storm</p>
+            </div>
+
+            <div class="section">
+                <h2>⚠️ The Problem</h2>
+                <div class="problem-box">
+                    <h3 style="margin-bottom: 20px; font-size: 1.8em;">Current Archaeological Challenges</h3>
+                    <p>
+                        Archaeological site detection and data collection is currently time-consuming, labor-intensive, and often 
+                        inaccurate. Traditional methods require extensive manual surveying, which can miss important subsurface 
+                        features and artifacts. Archaeologists struggle with:
+                    </p>
+                    <ul>
+                        <li>⛏️ Limited ability to detect buried structures without excavation</li>
+                        <li>📋 Inefficient data collection processes</li>
+                        <li>💰 High costs and time requirements for surveys</li>
+                        <li>🚧 Risk of damaging sites during investigation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💡 Our Solution</h2>
+                <div class="solution-box">
+                    <h3 style="margin-bottom: 20px; font-size: 1.8em;">The ASE Wand Technology</h3>
+                    <p>
+                        The ASE Wand is a handheld, portable device that combines advanced ground-penetrating radar, 
+                        GPS positioning, and real-time data analysis to revolutionize archaeological surveying. This 
+                        innovative tool enables researchers to quickly and accurately map subsurface features without 
+                        disturbing the site.
+                    </p>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>🎯 Precision Detection</h3>
+                        <p>Advanced sensors detect buried structures and artifacts with high accuracy, revealing hidden treasures beneath the surface</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📊 Real-Time Data</h3>
+                        <p>Instant visualization and analysis of subsurface features as you scan, bringing the past to life</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌍 GPS Integration</h3>
+                        <p>Automatic geolocation tagging of all discoveries, creating detailed archaeological maps</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Portable Design</h3>
+                        <p>Lightweight and easy to use in any field condition, from deserts to jungles</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 style="margin-bottom: 20px; text-align: center; color: #d4af37;">📝 We Need Your Feedback!</h2>
+                <p style="text-align: center; margin-bottom: 50px; font-size: 1.3em; color: #d2b48c;">
+                    Help us improve the ASE Wand by sharing your thoughts and expertise
+                </p>
+
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label>Name <span class="required">*</span></label>
+                        <input type="text" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Professional Background <span class="required">*</span></label>
+                        <select name="background" required>
+                            <option value="">Select your background</option>
+                            <option value="archaeologist">🏺 Archaeologist</option>
+                            <option value="researcher">📚 Academic Researcher</option>
+                            <option value="student">🎓 Student</option>
+                            <option value="museum">🏛️ Museum Professional</option>
+                            <option value="tech">💻 Technology Professional</option>
+                            <option value="other">🌟 Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How useful would this tool be for archaeological work? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="usefulness" value="5" id="use5" required>
+                                <label for="use5">⭐⭐⭐⭐⭐ Extremely Useful</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="usefulness" value="4" id="use4">
+                                <label for="use4">⭐⭐⭐⭐ Very Useful</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="usefulness" value="3" id="use3">
+                                <label for="use3">⭐⭐⭐ Moderately Useful</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="usefulness" value="2" id="use2">
+                                <label for="use2">⭐⭐ Slightly Useful</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="usefulness" value="1" id="use1">
+                                <label for="use1">⭐ Not Useful</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What features would you find most valuable? <span class="required">*</span></label>
+                        <textarea name="features" required placeholder="Describe which features or capabilities would be most important for your work..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What concerns or challenges do you foresee with this technology?</label>
+                        <textarea name="concerns" placeholder="Share any potential challenges, limitations, or concerns..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional suggestions or feedback</label>
+                        <textarea name="suggestions" placeholder="Any other thoughts, ideas, or suggestions for improvement..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">🚀 Submit Feedback</button>
+
+                    <div class="success-message" id="successMessage">
+                        <h3>✅ Thank You!</h3>
+                        <p>Your feedback has been recorded. We greatly appreciate your input in helping us develop the ASE Wand!</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- RESPONSES VIEW -->
+        <div id="responsesView" class="responses-view">
+            <div class="header">
+                <h1>📊 Survey Responses</h1>
+                <p style="font-size: 1.3em; margin-top: 15px; opacity: 0.9;">ASE Wand Feedback Dashboard</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3 id="totalResponses">0</h3>
+                    <p>Total Responses</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="avgRating">-</h3>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+
+            <div class="responses-container" id="responsesContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // Simple toggle between views
+        const toggleBtn = document.getElementById('toggleBtn');
+        const surveyView = document.getElementById('surveyView');
+        const responsesView = document.getElementById('responsesView');
+        let showingResponses = false;
+
+        toggleBtn.onclick = function() {
+            showingResponses = !showingResponses;
+            
+            if (showingResponses) {
+                surveyView.classList.add('hidden');
+                responsesView.classList.add('active');
+                toggleBtn.textContent = '📝 Back to Survey';
+                loadAndDisplayResponses();
+            } else {
+                surveyView.classList.remove('hidden');
+                responsesView.classList.remove('active');
+                toggleBtn.textContent = '📊 View Responses';
+            }
+        };
+
+        // Handle form submission
+        document.getElementById('feedbackForm').onsubmit = async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                timestamp: new Date().toISOString(),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                background: formData.get('background'),
+                usefulness: formData.get('usefulness'),
+                features: formData.get('features'),
+                concerns: formData.get('concerns') || '',
+                suggestions: formData.get('suggestions') || ''
+            };
+            
+            try {
+                const responseId = 'response:' + Date.now();
+                await window.storage.set(responseId, JSON.stringify(data), true);
+                
+                this.style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                setTimeout(() => {
+                    this.reset();
+                    this.style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            } catch (error) {
+                alert('Error saving response. Please try again.');
+                console.error('Storage error:', error);
+            }
+        };
+
+        // Load and display all responses
+        async function loadAndDisplayResponses() {
+            try {
+                const result = await window.storage.list('response:', true);
+                const responses = [];
+
+                if (result && result.keys && result.keys.length > 0) {
+                    for (const key of result.keys) {
+                        try {
+                            const data = await window.storage.get(key, true);
+                            if (data && data.value) {
+                                responses.push(JSON.parse(data.value));
+                            }
+                        } catch (err) {
+                            console.log('Error loading response:', err);
+                        }
+                    }
+                }
+
+                displayResponses(responses);
+            } catch (error) {
+                console.log('No responses yet');
+                displayResponses([]);
+            }
+        }
+
+        function displayResponses(responses) {
+            const container = document.getElementById('responsesContainer');
+            const totalEl = document.getElementById('totalResponses');
+            const avgEl = document.getElementById('avgRating');
+
+            totalEl.textContent = responses.length;
+
+            if (responses.length === 0) {
+                container.innerHTML = '<div class="no-responses">📭 No responses yet. Share your survey to start collecting feedback!</div>';
+                avgEl.textContent = '-';
+                return;
+            }
+
+            const ratings = responses.map(r => parseInt(r.usefulness)).filter(r => !isNaN(r));
+            const avgRating = ratings.length > 0 ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1) : '-';
+            avgEl.textContent = avgRating;
+
+            const ratingText = {
+                '5': 'Extremely Useful',
+                '4': 'Very Useful',
+                '3': 'Moderately Useful',
+                '2': 'Slightly Useful',
+                '1': 'Not Useful'
+            };
+
+            container.innerHTML = responses.reverse().map((response, index) => `
+                <div class="response-card">
+                    <h4>📋 Response #${responses.length - index}</h4>
+                    <p class="timestamp">🕐 ${new Date(response.timestamp).toLocaleString()}</p>
+                    
+                    <div class="response-field">
+                        <strong>👤 Name:</strong>
+                        <p>${response.name}</p>
+                    </div>
+                    
+                    <div class="response-field">
+                        <strong>📧 Email:</strong>
+                        <p>${response.email}</p>
+                    </div>
+                    
+                    <div class="response-field">
+                        <strong>💼 Professional Background:</strong>
+                        <p>${response.background}</p>
+                    </div>
+                    
+                    <div class="response-field">
+                        <strong>⭐ Usefulness Rating:</strong>
+                        <p>${response.usefulness}/5 - ${ratingText[response.usefulness] || ''}</p>
+                    </div>
+                    
+                    <div class="response-field">
+                        <strong>💎 Most Valuable Features:</strong>
+                        <p>${response.features}</p>
+                    </div>
+                    
+                    ${response.concerns ? `
+                    <div class="response-field">
+                        <strong>⚠️ Concerns/Challenges:</strong>
+                        <p>${response.concerns}</p>
+                    </div>
+                    ` : ''}
+                    
+                    ${response.suggestions ? `
+                    <div class="response-field">
+                        <strong>💡 Additional Feedback:</strong>
+                        <p>${response.suggestions}</p>
+                    </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
