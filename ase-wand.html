@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASE Wand - Revolutionary Archaeological Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .section {
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        .problem-box, .solution-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s;
+        }
+
+        .problem-box:hover, .solution-box:hover {
+            transform: translateX(10px);
+        }
+
+        .solution-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-left: 5px solid #764ba2;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .feature-card h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-top: 3px solid #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 ASE Wand</h1>
+            <p>Dust to Data</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Revolutionary Archaeological Survey & Excavation Tool</p>
+            <p style="font-size: 0.85em; margin-top: 15px; opacity: 0.85; font-style: italic;">Presented by PowerSurge Storm</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> The Problem</h2>
+            <div class="problem-box">
+                <h3 style="color: #e74c3c; margin-bottom: 15px;">Current Archaeological Challenges</h3>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    Archaeological site detection and data collection is currently time-consuming, labor-intensive, and often 
+                    inaccurate. Traditional methods require extensive manual surveying, which can miss important subsurface 
+                    features and artifacts. Archaeologists struggle with:
+                </p>
+                <ul style="margin-top: 15px; margin-left: 20px; font-size: 1.05em; line-height: 1.8;">
+                    <li>Limited ability to detect buried structures without excavation</li>
+                    <li>Inefficient data collection processes</li>
+                    <li>High costs and time requirements for surveys</li>
+                    <li>Risk of damaging sites during investigation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">💡</span> Our Solution</h2>
+            <div class="solution-box">
+                <h3 style="color: #11998e; margin-bottom: 15px;">The ASE Wand Technology</h3>
+                <p style="font-size: 1.1em; line-height: 1.8;">
+                    The ASE Wand is a handheld, portable device that combines advanced ground-penetrating radar, 
+                    GPS positioning, and real-time data analysis to revolutionize archaeological surveying. This 
+                    innovative tool enables researchers to quickly and accurately map subsurface features without 
+                    disturbing the site.
+                </p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🎯 Precision Detection</h3>
+                    <p>Advanced sensors detect buried structures and artifacts with high accuracy</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Real-Time Data</h3>
+                    <p>Instant visualization and analysis of subsurface features</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌍 GPS Integration</h3>
+                    <p>Automatic geolocation tagging of all discoveries</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Portable Design</h3>
+                    <p>Lightweight and easy to use in any field condition</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2 style="margin-bottom: 30px; text-align: center;">
+                <span class="icon">📝</span> We Need Your Feedback!
+            </h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1em; color: #666;">
+                Help us improve the ASE Wand by sharing your thoughts and expertise
+            </p>
+
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label>Name <span class="required">*</span></label>
+                    <input type="text" name="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email <span class="required">*</span></label>
+                    <input type="email" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Professional Background <span class="required">*</span></label>
+                    <select name="background" required>
+                        <option value="">Select your background</option>
+                        <option value="archaeologist">Archaeologist</option>
+                        <option value="researcher">Academic Researcher</option>
+                        <option value="student">Student</option>
+                        <option value="museum">Museum Professional</option>
+                        <option value="tech">Technology Professional</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>How useful would this tool be for archaeological work? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="usefulness" value="5" id="use5" required>
+                            <label for="use5">Extremely Useful</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="usefulness" value="4" id="use4">
+                            <label for="use4">Very Useful</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="usefulness" value="3" id="use3">
+                            <label for="use3">Moderately Useful</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="usefulness" value="2" id="use2">
+                            <label for="use2">Slightly Useful</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="usefulness" value="1" id="use1">
+                            <label for="use1">Not Useful</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What features would you find most valuable? <span class="required">*</span></label>
+                    <textarea name="features" required placeholder="Describe which features or capabilities would be most important for your work..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>What concerns or challenges do you foresee with this technology?</label>
+                    <textarea name="concerns" placeholder="Share any potential challenges, limitations, or concerns..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional suggestions or feedback</label>
+                    <textarea name="suggestions" placeholder="Any other thoughts, ideas, or suggestions for improvement..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+
+                <div class="success-message" id="successMessage">
+                    <h3>✅ Thank You!</h3>
+                    <p>Your feedback has been recorded. We greatly appreciate your input in helping us develop the ASE Wand!</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            console.log('Form submission:', data);
+            
+            this.style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            setTimeout(() => {
+                this.reset();
+                this.style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
