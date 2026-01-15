@@ -26,54 +26,58 @@
         }
 
         /* Keep the app fixed, but allow inner scrolling */
-body {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-}
+        body {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
 
-/* Flex containers MUST allow children to shrink */
-html, body { height: 100%; }
+        /* Flex containers MUST allow children to shrink */
+        html,
+        body {
+            height: 100%;
+        }
 
-.app-container {
-  display: flex;
-  height: 100dvh;   /* ✅ better for mobile browsers */
-  width: 100vw;
-}
+        .app-container {
+            display: flex;
+            height: 100dvh;
+            /* ✅ better for mobile browsers */
+            width: 100vw;
+        }
 
 
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
 
-  /* ✅ KEY: allow inner scroll container to work */
-  min-height: 0;
-  min-width: 0;
-}
+            /* ✅ KEY: allow inner scroll container to work */
+            min-height: 0;
+            min-width: 0;
+        }
 
-/* Header stays fixed height */
-.header {
-  flex: 0 0 auto;
-}
+        /* Header stays fixed height */
+        .header {
+            flex: 0 0 auto;
+        }
 
-/* ✅ Make this the scroll area */
-.content-area {
-  flex: 1 1 auto;
+        /* ✅ Make this the scroll area */
+        .content-area {
+            flex: 1 1 auto;
 
-  /* ✅ KEY: allow overflow scroll in flex layouts */
-  min-height: 0;
+            /* ✅ KEY: allow overflow scroll in flex layouts */
+            min-height: 0;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
 
-  /* ✅ helps iOS smooth scrolling */
-  -webkit-overflow-scrolling: touch;
+            /* ✅ helps iOS smooth scrolling */
+            -webkit-overflow-scrolling: touch;
 
-  padding: 10px;
-}
+            padding: 10px;
+        }
 
 
         /* LEFT SIDEBAR */
@@ -164,6 +168,34 @@ html, body { height: 100%; }
         .config-btn:hover {
             background: rgba(80, 60, 30, 0.8);
         }
+        /* Make summary tab a two-part layout: scroll area + sticky footer */
+.summary-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* critical for flex scrolling */
+}
+
+/* This part scrolls */
+.summary-section {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Sticky footer button */
+.summary-footer {
+  flex: 0 0 auto;
+  padding-top: 10px;
+  background: rgba(30, 20, 10, 0.95);
+  border-top: 2px solid #8b7355;
+}
+
+/* Optional: keep it visually distinct */
+.send-btn {
+  margin: 0;
+}
 
         /* MAIN CONTENT AREA */
 
@@ -338,52 +370,58 @@ html, body { height: 100%; }
         }
 
         /* Status card as a single horizontal row */
-.status-card {
-  display: flex;
-  align-items: center;       /* vertical alignment */
-  gap: 10px;                 /* space between icon & text */
+        .status-card {
+            display: flex;
+            align-items: center;
+            /* vertical alignment */
+            gap: 10px;
+            /* space between icon & text */
 
-  padding: 6px 10px;         /* compact height */
-  margin: 6px 0;
+            padding: 6px 10px;
+            /* compact height */
+            margin: 6px 0;
 
-  text-align: left;          /* stop center stacking */
-}
+            text-align: left;
+            /* stop center stacking */
+        }
 
-/* Icon smaller & inline */
-.status-icon {
-  font-size: 18px;
-  line-height: 1;
-  margin: 0;
-  flex-shrink: 0;            /* prevent squishing */
-}
+        /* Icon smaller & inline */
+        .status-icon {
+            font-size: 18px;
+            line-height: 1;
+            margin: 0;
+            flex-shrink: 0;
+            /* prevent squishing */
+        }
 
-/* Text inline, compact */
-.status-text {
-  font-size: 12px;
-  line-height: 1.2;
-  margin: 0;
-}
-/* Video + button in one row */
-.video-action-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+        /* Text inline, compact */
+        .status-text {
+            font-size: 12px;
+            line-height: 1.2;
+            margin: 0;
+        }
 
-/* Video takes most of the space */
-.video-action-row video {
-  flex: 1;
-  max-height: 220px;
-  border-radius: 8px;
-  border: 2px solid #8b7355;
-}
+        /* Video + button in one row */
+        .video-action-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-/* Button stays compact */
-.video-action-row .action-btn {
-  flex: 0 0 auto;
-  white-space: nowrap;
-  padding: 10px 12px;
-}
+        /* Video takes most of the space */
+        .video-action-row video {
+            flex: 1;
+            max-height: 220px;
+            border-radius: 8px;
+            border: 2px solid #8b7355;
+        }
+
+        /* Button stays compact */
+        .video-action-row .action-btn {
+            flex: 0 0 auto;
+            white-space: nowrap;
+            padding: 10px 12px;
+        }
 
         .results-box {
             background: rgba(0, 0, 0, 0.3);
@@ -447,28 +485,32 @@ html, body { height: 100%; }
         }
 
         /* ✅ Allow video to shrink inside a flex row */
-.video-action-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap;        /* ✅ prevent wrapping */
-}
+        .video-action-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: nowrap;
+            /* ✅ prevent wrapping */
+        }
 
-/* ✅ override global video width:100% inside this row */
-.video-action-row #videoPreview {
-  width: auto !important;   /* ✅ critical */
-  flex: 1 1 auto;
-  min-width: 0;             /* ✅ critical for Android flex */
-  max-height: 220px;
-}
+        /* ✅ override global video width:100% inside this row */
+        .video-action-row #videoPreview {
+            width: auto !important;
+            /* ✅ critical */
+            flex: 1 1 auto;
+            min-width: 0;
+            /* ✅ critical for Android flex */
+            max-height: 220px;
+        }
 
-/* ✅ Make this button NOT full width */
-.video-action-row .action-btn {
-  width: auto !important;   /* ✅ critical */
-  flex: 0 0 auto;
-  white-space: nowrap;
-  padding: 10px 12px;
-}
+        /* ✅ Make this button NOT full width */
+        .video-action-row .action-btn {
+            width: auto !important;
+            /* ✅ critical */
+            flex: 0 0 auto;
+            white-space: nowrap;
+            padding: 10px 12px;
+        }
 
 
         .summary-section {
@@ -492,11 +534,13 @@ html, body { height: 100%; }
             margin: 6px 0;
             border-left: 3px solid #8b6914;
         }
+
         @media (orientation: landscape) and (max-height: 500px) {
-  .video-action-row {
-    flex-direction: row;   /* ✅ stay side-by-side in landscape */
-  }
-}
+            .video-action-row {
+                flex-direction: row;
+                /* ✅ stay side-by-side in landscape */
+            }
+        }
 
 
         /* Landscape specific optimizations */
@@ -712,12 +756,12 @@ html, body { height: 100%; }
 
                     <div class="video-action-row">
                         <video id="videoPreview" autoplay playsinline></video>
-                    
+
                         <button class="action-btn" onclick="captureArtifact()">
                             📷 DETECT ARTIFACT
                         </button>
                     </div>
-                    
+
 
                     <button class="action-btn secondary" onclick="captureFromPi('artifact')">
                         📸 USE PI CAMERA
@@ -735,13 +779,13 @@ html, body { height: 100%; }
 
                     <div class="video-action-row">
                         <video id="videoPreview2" autoplay playsinline></video>
-                    
+
                         <button class="action-btn" onclick="captureSite()">
                             📷 DETECT SITE
                         </button>
                     </div>
 
-                   
+
                     <button class="action-btn secondary" onclick="captureFromPi('site')">
                         📸 USE PI CAMERA
                     </button>
@@ -756,21 +800,41 @@ html, body { height: 100%; }
                         <div class="status-text">Ready to scan</div>
                     </div>
 
-                    <div id="depthCanvas"
-                        style="width:100%; height:280px; border:2px solid #8b7355; border-radius:10px; background:#1a1410; margin:10px 0;">
+                    <div class="video-action-row">
+                        <video id="depthCanvas"
+                            style="height:280px; border:2px solid #8b7355; border-radius:10px; background:#1a1410; margin:10px 0;"
+                            autoplay playsinline></video>
+
+                        <button class="action-btn" onclick="scanLidar()">
+                            📏 DEPTH MAP
+                        </button>
+                    </div>
+
+
+                    <!-- <div id="depthCanvas"
+                        style="height:280px; border:2px solid #8b7355; border-radius:10px; background:#1a1410; margin:10px 0;">
                     </div>
 
                     <button class="action-btn" onclick="scanLidar()">
-                        📏 RUN SCAN
-                    </button>
+                        📏 DEPTH MAP
+                    </button> -->
 
                     <div id="lidar-results" class="results-box hidden"></div>
                 </div>
 
                 <!-- Summary Tab -->
                 <div id="tab-summary" class="tab-content">
-                    <div id="sessionSummary" class="summary-section"></div>
+                    <div class="summary-layout">
+                        <div id="sessionSummary" class="summary-section"></div>
+
+                        <div class="summary-footer">
+                            <button class="action-btn send-btn" onclick="sendToLab()">
+                                📤 SEND TO LAB
+                            </button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -1526,11 +1590,11 @@ html, body { height: 100%; }
                 html += `</div>`;
             }
 
-            html += `
-                <button class="action-btn" style="margin-top: 20px; background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);" onclick="sendToLab()">
-                    📤 SEND TO LAB INTERFACE
-                </button>
-            `;
+            // html += `
+            //     <button class="action-btn" style="margin-top: 20px; background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);" onclick="sendToLab()">
+            //         📤 SEND TO LAB INTERFACE
+            //     </button>
+            // `;
 
             document.getElementById('sessionSummary').innerHTML = html;
         }
