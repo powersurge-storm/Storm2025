@@ -13,17 +13,11 @@
 
 ## 🎮 6-TAB NAVIGATION
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│  🎤 Record  |  🗺️ Site GPR  |  📡 Depth LiDAR  |  🏺 Artifact AI  |  📋 Summary  |  ⚙️  │
-└──────────────────────────────────────────────────────────────────┘
-```
-
----
+<img width="82" height="460" alt="image" src="https://github.com/user-attachments/assets/58195388-be9e-4212-a0ba-325d9a2ea43f" />
 
 ## 📝 1. 🎤 RECORD - Voice Documentation
 
-**[SCREENSHOT: Record screen with START RECORDING button]**
+<img width="616" height="298" alt="image" src="https://github.com/user-attachments/assets/a85d5b2a-24f9-4d0c-af39-5175230e1d1e" />
 
 ```
 ┌─────────────────────────┐
@@ -40,8 +34,7 @@
 1. Tap **🎤 Record** tab
 2. Tap **🔴 START RECORDING**
 3. Speak observations clearly (15-20 cm from mic)
-4. Tap **⏹️ STOP RECORDING**
-5. Auto-transcribed, timestamped, GPS-tagged
+4. Auto-transcribed, timestamped, GPS-tagged
 
 **Tips:** Use short phrases • Say "comma" or "period" • 99 languages supported
 
@@ -49,15 +42,13 @@
 
 ## 🗺️ 2. SITE GPR - Subsurface Detection
 
-**[SCREENSHOT: Site GPR screen with CAPTURE & DETECT button]**
+<img width="605" height="288" alt="image" src="https://github.com/user-attachments/assets/607c88db-f643-4a21-90a8-8a30eb86acc5" />
 
 ```
 ┌─────────────────────────┐
 │   Site GPR              │
 │                         │
-│   📷 CAPTURE & DETECT  │
-│                         │
-│   📸 USE PI CAMERA     │
+│   📷 DETECT SITE        │
 │                         │
 └─────────────────────────┘
 ```
@@ -75,7 +66,7 @@
 
 ## 📡 3. DEPTH LiDAR - 3D Surface Mapping
 
-**[SCREENSHOT: Depth LiDAR screen with buttons]**
+<img width="598" height="292" alt="image" src="https://github.com/user-attachments/assets/9d83ffba-ad75-4b62-9491-e424ee5befcb" />
 
 ```
 ┌─────────────────────────┐
@@ -83,16 +74,15 @@
 │                         │
 │   Loading AI...         │
 │                         │
-│   📷 CAPTURE & DETECT  │
+│   📷 DEPTH MAP          │
 │                         │
-│   📸 USE PI CAMERA     │
 └─────────────────────────┘
 ```
 
 **How to Use:**
 1. Tap **📡 Depth LiDAR** tab
 2. Hold 30-50 cm above surface
-3. Tap **📷 CAPTURE & DETECT**
+3. Tap **📷 DEPTH MAP**
 4. Creates 3D depth map with measurements
 5. Scan in grid pattern for complete coverage
 
@@ -102,7 +92,7 @@
 
 ## 🏺 4. ARTIFACT AI - Identification
 
-**[SCREENSHOT: Artifact AI screen with RUN SCAN button]**
+<img width="601" height="285" alt="image" src="https://github.com/user-attachments/assets/d81085e0-431b-4bf4-b11b-321f88d9c259" />
 
 ```
 ┌─────────────────────────┐
@@ -110,7 +100,7 @@
 │                         │
 │   Ready to scan         │
 │                         │
-│   📏 RUN SCAN          │
+│   📏 DETECT ARTIFACT    │
 │                         │
 └─────────────────────────┘
 ```
@@ -118,7 +108,7 @@
 **How to Use:**
 1. Tap **🏺 Artifact AI** tab
 2. Point camera at artifact
-3. Tap **📏 RUN SCAN**
+3. Tap **📏 DETECT ARTIFACT**
 4. AI identifies type + confidence %
 5. Review recommendation
 
@@ -130,7 +120,7 @@
 
 ## 📋 5. SUMMARY - Session Review
 
-**[SCREENSHOT: Summary screen showing session data]**
+<img width="606" height="309" alt="image" src="https://github.com/user-attachments/assets/a3b4a887-ade8-452d-97f0-0e29948559fb" />
 
 **How to Use:**
 1. Tap **📋 Summary** tab
@@ -146,7 +136,7 @@
 
 ## ⚙️ 6. SETTINGS - Configuration
 
-**[SCREENSHOT: Settings screen with configuration options]**
+<img width="559" height="293" alt="image" src="https://github.com/user-attachments/assets/7472d7b0-22ef-4993-9b4e-aa41c5453129" />
 
 ```
 ┌────────────────────────────┐
@@ -241,34 +231,14 @@
 
 ---
 
-## 🎯 BEST PRACTICES
-
-**Recording:**
-- Start: "Site: [name], Date: [date], Archaeologist: [name]"
-- Short phrases (10-15 sec)
-- Consistent terminology
-
-**Scanning:**
-- Grid pattern with 20% overlap
-- Hold steady at correct distance
-- Multiple passes confirm findings
-
-**AI Usage:**
-- Trust 90%+ confidence
-- Verify 70-89% with expert
-- Flag <70% for review
-- Multiple angles improve accuracy
-
----
-
 ## 📊 QUICK REFERENCE TABLE
 
 | Tab | Button | Distance | Purpose | Time |
 |-----|--------|----------|---------|------|
 | 🎤 | START RECORDING | 15-20 cm | Voice notes | 10-30 sec |
-| 🗺️ | CAPTURE & DETECT | Over ground | Subsurface | 5-10 sec |
-| 📡 | CAPTURE & DETECT | 30-50 cm | 3D depth map | 5-10 sec |
-| 🏺 | RUN SCAN | Point at artifact | AI classify | 1-2 sec |
+| 🗺️ | DETECT SITE | Over ground | Subsurface | 5-10 sec |
+| 📡 | DEPTH MAP | 30-50 cm | 3D depth map | 5-10 sec |
+| 🏺 | DETECT ARTIFACT | Point at artifact | AI classify | 1-2 sec |
 | 📋 | (review) | - | Session data | As needed |
 | ⚙️ | (config) | - | Setup/remote | 2-5 min |
 
