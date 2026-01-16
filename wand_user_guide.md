@@ -191,4 +191,4 @@
 
 **ASE Wand User Guide v2.0** | Team PowerSurge Storm | FLL 2025-2026  
 **Interface:** https://powersurge-storm.github.io/Storm2025/wand_page.html  
-**Support:** support@asewand.com
+**Support:** powersurge.storm@gmail.com
