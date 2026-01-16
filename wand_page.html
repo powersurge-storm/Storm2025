@@ -219,6 +219,32 @@
             font-size: 11px;
             color: #a0826d;
         }
+        .header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* compact header button */
+.header-btn {
+  width: auto;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  border: 2px solid #90caf9;
+  color: #f5e6d3;
+  white-space: nowrap;
+}
+
+/* reuse your hidden class */
+.hidden {
+  display: none !important;
+}
+
 
         /* .content-area {
             flex: 1;
@@ -732,6 +758,9 @@
             <div class="header">
                 <div class="header-title" id="headerTitle">Voice Recording</div>
                 <div class="header-status" id="headerStatus">Ready</div>
+                <button id="sendToLabBtn" class="header-btn hidden" onclick="sendToLab()">
+                    📤 Send to Lab
+                  </button>
             </div>
 
             <div class="content-area">
@@ -800,7 +829,7 @@
                         <div class="status-text">Ready to scan</div>
                     </div>
 
-                    <div class="video-action-row">
+                    <!-- <div class="video-action-row">
                         <video id="depthCanvas"
                             style="height:280px; border:2px solid #8b7355; border-radius:10px; background:#1a1410; margin:10px 0;"
                             autoplay playsinline></video>
@@ -808,16 +837,16 @@
                         <button class="action-btn" onclick="scanLidar()">
                             📏 DEPTH MAP
                         </button>
-                    </div>
+                    </div> -->
 
 
-                    <!-- <div id="depthCanvas"
+                    <div id="depthCanvas"
                         style="height:280px; border:2px solid #8b7355; border-radius:10px; background:#1a1410; margin:10px 0;">
                     </div>
 
                     <button class="action-btn" onclick="scanLidar()">
                         📏 DEPTH MAP
-                    </button> -->
+                    </button>
 
                     <div id="lidar-results" class="results-box hidden"></div>
                 </div>
@@ -1086,6 +1115,14 @@
             };
             document.getElementById('headerTitle').textContent = titles[tabName] || tabName;
             document.getElementById('headerStatus').textContent = 'Ready';
+            const sendBtn = document.getElementById('sendToLabBtn');
+
+            if (tabName === 'summary') {
+                sendBtn.classList.remove('hidden');
+            } else {
+                sendBtn.classList.add('hidden');
+}
+
 
             if (tabName === 'artifact') startCamera('videoPreview');
             if (tabName === 'site') startCamera2('videoPreview2');
