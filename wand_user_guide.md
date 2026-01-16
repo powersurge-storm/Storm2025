@@ -13,22 +13,12 @@
 
 ## 🎮 6-TAB NAVIGATION
 
-<img width="82" height="460" alt="image" src="https://github.com/user-attachments/assets/58195388-be9e-4212-a0ba-325d9a2ea43f" />
+<img width="62" height="380" alt="image" src="https://github.com/user-attachments/assets/58195388-be9e-4212-a0ba-325d9a2ea43f" />
 
 ## 📝 1. 🎤 RECORD - Voice Documentation
 
 <img width="616" height="298" alt="image" src="https://github.com/user-attachments/assets/a85d5b2a-24f9-4d0c-af39-5175230e1d1e" />
 
-```
-┌─────────────────────────┐
-│   Voice Recording       │
-│                         │
-│   Status: Ready         │
-│                         │
-│   🔴 START RECORDING   │
-│                         │
-└─────────────────────────┘
-```
 
 **How to Use:**
 1. Tap **🎤 Record** tab
@@ -43,15 +33,6 @@
 ## 🗺️ 2. SITE GPR - Subsurface Detection
 
 <img width="605" height="288" alt="image" src="https://github.com/user-attachments/assets/607c88db-f643-4a21-90a8-8a30eb86acc5" />
-
-```
-┌─────────────────────────┐
-│   Site GPR              │
-│                         │
-│   📷 DETECT SITE        │
-│                         │
-└─────────────────────────┘
-```
 
 **How to Use:**
 1. Tap **🗺️ Site GPR** tab
@@ -68,16 +49,6 @@
 
 <img width="598" height="292" alt="image" src="https://github.com/user-attachments/assets/9d83ffba-ad75-4b62-9491-e424ee5befcb" />
 
-```
-┌─────────────────────────┐
-│   Depth LiDAR           │
-│                         │
-│   Loading AI...         │
-│                         │
-│   📷 DEPTH MAP          │
-│                         │
-└─────────────────────────┘
-```
 
 **How to Use:**
 1. Tap **📡 Depth LiDAR** tab
@@ -93,17 +64,6 @@
 ## 🏺 4. ARTIFACT AI - Identification
 
 <img width="601" height="285" alt="image" src="https://github.com/user-attachments/assets/d81085e0-431b-4bf4-b11b-321f88d9c259" />
-
-```
-┌─────────────────────────┐
-│   Artifact AI           │
-│                         │
-│   Ready to scan         │
-│                         │
-│   📏 DETECT ARTIFACT    │
-│                         │
-└─────────────────────────┘
-```
 
 **How to Use:**
 1. Tap **🏺 Artifact AI** tab
@@ -137,21 +97,6 @@
 ## ⚙️ 6. SETTINGS - Configuration
 
 <img width="559" height="293" alt="image" src="https://github.com/user-attachments/assets/7472d7b0-22ef-4993-9b4e-aa41c5453129" />
-
-```
-┌────────────────────────────┐
-│  Configuration         ×   │
-│                            │
-│  🔗 GET NGROK URL         │
-│  Current ngrok URL:        │
-│  [url displayed]           │
-│  📋 COPY URL              │
-│                            │
-│  Pi IP/URL: [input]        │
-│  Artifact Model: [select]  │
-│  Site Model: [select]      │
-└────────────────────────────┘
-```
 
 **Setup:**
 1. Tap **⚙️** (gear icon)
