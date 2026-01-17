@@ -43,7 +43,10 @@ async def main():
    motor.stop(port.D)
 
    #Move back to align with rubberband attachment
-   await motor_pair.move_for_degrees(motor_pair.PAIR_1,-290, 0)
+   await motor_pair.move_for_degrees(motor_pair.PAIR_1,-300, 0)
+   
+   #waiting for 2 sec before the rubberband attachment move
+   await runloop.sleep_ms(2000)
 
    await motor.run_for_degrees(port.C,-400,500)
    motor.stop(port.C)
@@ -54,14 +57,6 @@ async def main():
    motor_pair.move(motor_pair.PAIR_1,0,velocity=-800)
    await runloop.sleep_ms(1770)
    motor_pair.stop(motor_pair.PAIR_1)
-   motion_sensor.reset_yaw(0)# reset yaw angle
-  
-#    motion_sensor.reset_yaw(0)# reset yaw angle
-#    while motion_sensor.tilt_angles()[0]<900:#getting yaw value from tuple
-#        motor_pair.move(motor_pair.PAIR_1,-10)#move to left
-#    motor_pair.stop(motor_pair.PAIR_1)#stop motor
-    
-#    await motor.run_for_time(port.C,1000,-300)
-#    motor.stop(port.C)
 
 runloop.run(main())
+
