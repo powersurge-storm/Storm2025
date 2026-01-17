@@ -42,7 +42,7 @@ async def main():
     motion_sensor.set_yaw_face(motion_sensor.FRONT)
     motion_sensor.reset_yaw(0)# reset yaw angle
     motor_pair.unpair(motor_pair.PAIR_1) # unpairs the motors in case it conflicts with previous code
-    motor_pair.pair(motor_pair.PAIR_1,LEFT,RIGHT) #creating new pair motors at        this whole chunk from 9 to 14 is to activate the driving motors and reseting the bot to move smoothly
+    motor_pair.pair(motor_pair.PAIR_1,LEFT,RIGHT) #creating new pair motors to activate the driving motors and reseting the bot to move smoothly
     
     # Move forward to be close to the Map reveal
     await gyro_forward(distance=1430,speed=500)
