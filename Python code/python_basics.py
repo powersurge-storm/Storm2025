@@ -19,7 +19,6 @@ RIGHT_ATTACHMENT = port.F
 async def gyro_forward(distance, speed):
     motion_sensor.reset_yaw(0)# reset yaw angle
     motor.reset_relative_position(LEFT, 0)
-    steer = 0
     while(motor.relative_position(LEFT)>=(-1 * distance)):
         error = motion_sensor.tilt_angles()[0] * -0.1
         correction = int(error * -2)
@@ -29,8 +28,6 @@ async def gyro_forward(distance, speed):
 async def gyro_backward(distance, speed):
     motion_sensor.reset_yaw(0)# reset yaw angle
     motor.reset_relative_position(LEFT, 0)
-    steer = 0
-    print(motor.relative_position(LEFT))
     while(motor.relative_position(LEFT)<=distance):
         error = motion_sensor.tilt_angles()[0] * -0.1
         # correction is an integer which is the negative of the error
