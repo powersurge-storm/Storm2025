@@ -47,8 +47,9 @@ async def main():
     # Move forward to be close to the Map reveal
     await gyro_forward(distance=1430,speed=500)
 
-    # Move driving motors for 1300 degrees
-    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 1300, 0, velocity=600, acceleration= 100, deceleration=100)
+     # Until White color is detected, move Robot back slowly
+    while not color_sensor.color(port.A) is not color.WHITE:
+        await motor_pair.move_for_degrees(motor_pair.PAIR_1, -50, 0)
 
     #Turn Right
     motion_sensor.reset_yaw(0)# reset yaw angle
@@ -56,9 +57,8 @@ async def main():
         motor_pair.move(motor_pair.PAIR_1,100)#move to Right
     motor_pair.stop(motor_pair.PAIR_1)#stop motor
 
-    # Until White color is detected, move Robot back slowly
-    while not color_sensor.color(port.A) is not color.WHITE:
-        await motor_pair.move_for_degrees(motor_pair.PAIR_1, -50, 0)
+    # Move driving motors for 1300 degrees
+    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 1300, 0, velocity=600, acceleration= 100, deceleration=100)
 
     # Turn for 150 degrees after color sensor detects white
     await motor.run_for_degrees(port.D,150,150)
