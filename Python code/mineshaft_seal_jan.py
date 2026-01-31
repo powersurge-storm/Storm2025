@@ -13,6 +13,7 @@ RIGHT_ATTACHMENT = port.F
 
 async def gyro_forward(distance, speed):
     motor.reset_relative_position(LEFT, 0)
+    motion_sensor.reset_yaw(0)
     steer = 0
     while(motor.relative_position(LEFT)>=(-1 * distance)):
         #print(motor.relative_position(LEFT))
@@ -24,6 +25,7 @@ async def gyro_forward(distance, speed):
 
 async def gyro_backward(distance, speed):
     motor.reset_relative_position(LEFT, 0)
+    motion_sensor.reset_yaw(0)
     steer = 0
     print(motor.relative_position(LEFT))
     while(motor.relative_position(LEFT)<=distance):
