@@ -892,7 +892,7 @@
 
                 <label style="margin-top: 12px;">Artifact Model:</label>
                 <input type="text" id="artifactModelURL"
-                    value="https://teachablemachine.withgoogle.com/models/tR7XPvCbg/">
+                    value="https://teachablemachine.withgoogle.com/models/OxI2pphGC/">
 
                 <label style="margin-top: 12px;">Site Model:</label>
                 <input type="text" id="siteModelURL" value="https://teachablemachine.withgoogle.com/models/6WYaYL0iZ/">
@@ -1063,8 +1063,10 @@
         function speak(text) {
             if (synth.speaking) synth.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 0.9;
-            utterance.pitch = 1;
+            utterance.rate = 1.1;      // Normal speed
+            utterance.pitch = 1.15;     // Normal pitch
+            utterance.volume = 1.0;
+            utterance.lang = 'en-US';
             synth.speak(utterance);
         }
 
