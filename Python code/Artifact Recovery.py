@@ -110,4 +110,43 @@ async def main():
     #Go back after grabbing artifact
     await gyro_backward(distance=220,speed=220)
 
+    #Secure artifact from falling
+    await motor.run_for_degrees(LEFT_ATTACHMENT,150,400)
+
+    #Move fwd to get room for turning
+    await gyro_forward(distance=100,speed=400)
+    
+    #Turn slightly towards base to give turning room
+    await motor.run_for_degrees(LEFT, 200, 400)
+
+    #Turn slightly towards Seal
+    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1,250, 400,-400)
+
+    #Move to Seal
+    await gyro_forward(distance=600,speed=600)
+
+    #Attachment down for Seal
+    await motor.run_for_degrees(port.F,350,-500)
+
+    #Sneak under Seal
+    await gyro_forward(distance=300,speed=300)
+
+    #Lift for Seal
+    await motor.run_for_degrees(port.F,120, 600)
+
+    #Turn slightly Seal
+    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1,150, -300,300)
+
+    #Lift for Seal
+    await motor.run_for_degrees(port.F,200, 600)
+
+    #Move to away from seal
+    await gyro_backward(distance=100,speed=400)
+
+    #Turn to drop artifact
+    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1,300, 300,-300)
+
+    #Drop artifact
+    await motor.run_for_degrees(port.C,200,-400)
+
 runloop.run(main())
