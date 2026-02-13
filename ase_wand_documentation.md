@@ -198,7 +198,8 @@ The team conducted multiple cross-training sessions to ensure:
 | **January 10, 2026** | 4 | Final integration | 9/9 |
 | **January 11, 2026** | 2 | Community feedback collection | 7/9 |
 | **January 12, 2026** | 3 | Documentation update | 7/9 |
-
+| **January 31, 2026** | 4 | Cahokia Mounds Trip and meet with Angela Cooper | 7/9 |
+| **February 6, 2026** | 3 | Provisional Patent Filed | 9/9 |
 ### Summary Statistics
 
 **Competition Phase (Aug 17 - Dec 4, 2025):**
@@ -218,19 +219,19 @@ The team conducted multiple cross-training sessions to ensure:
 - **Total Hours:** 163 hours
 - **Project Duration:** 20 weeks
 
-### Individual Participation Hours (Updated through January 12, 2026)
+### Individual Participation Hours (Updated through February 13th, 2026)
 
 | Team Member | Competition Hours | Post-Competition Hours | Total Hours |
 |-------------|-------------------|------------------------|-------------|
-| **Sana Salavath** | 74 | 44 | 118 |
-| **Mansi Ommi** | 106 | 40 | 146 |
-| **Anavi Sambaraju** | 110 | 42 | 152 |
-| **Saanvika Yezzuvarapu** | 97 | 41 | 138 |
-| **Amelia Easter** | 81 | 43 | 124 |
-| **Shrihan Vemula** | 101 | 45 | 146 |
-| **Darshan Ayyanar** | 93 | 44 | 137 |
-| **Sharman Gokhale** | 90 | 43 | 133 |
-| **Vihaan Cheepurupalli** | 83 | 43 | 126 |
+| **Sana Salavath** | 74 | 44 | 171 |
+| **Mansi Ommi** | 106 | 40 | 221 |
+| **Anavi Sambaraju** | 110 | 42 | 228 |
+| **Saanvika Yezzuvarapu** | 97 | 41 | 206 |
+| **Amelia Easter** | 81 | 43 | 181 |
+| **Shrihan Vemula** | 101 | 45 | 220 |
+| **Darshan Ayyanar** | 93 | 44 | 200 |
+| **Sharman Gokhale** | 90 | 43 | 210 |
+| **Vihaan Cheepurupalli** | 83 | 43 | 194 |
 
 **Team Average:** 146 hours per student
 
@@ -261,6 +262,7 @@ The team conducted multiple cross-training sessions to ensure:
 - Field Museum visit completed
 - Archaeological Survey of Illinois visit completed
 - Initial problem list created (20+ problems identified)
+- Cahokia Mounds visit completed 
 
 ![PXL_20250823_201232643](https://github.com/user-attachments/assets/a106ed3c-2788-4029-86b4-d60e384ed0d9)
 
@@ -272,11 +274,12 @@ The team conducted multiple cross-training sessions to ensure:
 - ✅ Validate problem areas
 - ✅ Learn about current workflows
 - ✅ Gather feedback on potential solutions
+- ✅ File Provisional Patent for Innovation 
 
 **Key Milestones:**
 - 5+ expert interviews completed
 - Email correspondence established
-- Problem narrowed to: Data loss & efficiency
+- Problem narrowed to: Data loss &  Data efficiency
 
 ![expertvisit](https://github.com/user-attachments/assets/baa55eaf-bb03-4999-8c55-82845c273cab)
 
@@ -328,6 +331,7 @@ The team conducted multiple cross-training sessions to ensure:
 - ✅ Deploy Flask API for data management
 - ✅ Train AI model for artifact detection
 - ✅ Gather community feedback
+- ✅ Testing prototype at Cahokia Mounds 
 
 **Key Milestones:**
 - Raspberry Pi configured with all components
@@ -339,8 +343,9 @@ The team conducted multiple cross-training sessions to ensure:
 - Session summary generation complete
 - Real-time lab transmission enabled
 - Community feedback survey distributed
+- Provisional Patent Filed 
 
-**Timeline:** 30 days (December 6, 2025 - January 12, 2026)
+**Timeline:** 30 days (December 6, 2025 - February 13th, 2026)
 
 ### Storyboard & Progress Tracking
 
@@ -397,9 +402,21 @@ Our storyboard included:
 
 ![Innovation Powersurge Storm (1)](https://github.com/user-attachments/assets/c309f640-9629-41f9-830f-43b4bdf9ff2c)
 
----
+### 3. Cahokia Mounds Trip with Archeologist Angela Cooper 
 
-### 3. Community Outreach
+**What We Learned:**
+- The importance of testing
+- The past of Cahokia
+- Our ASE Wand can detect multiple languages succesfully 
+
+**Key Takeaways:**
+- To make sure our ASE wand is affordable
+- Our ASE Wand is capable of taking pictures 
+
+![PXL_20260131_173542749](https://github.com/user-attachments/assets/4a434b0c-03eb-4446-8b2f-8bfb925380bd)
+
+
+### 4. Community Outreach
 **Activities:**
 - **SEWA Diwali Food Drive** - Served food at community events
 - **Million Meal Food Drive** - Volunteered to help fight hunger
