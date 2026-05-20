@@ -1730,7 +1730,7 @@ The **ASE Wand** represents more than just a technical innovation—it's a pract
 - 34 team meetings
 - 5+ expert consultations
 - 2 major field trips
-- 3 design iterations
+- Multiple design iterations
 - 1 working demonstration
 
 **Post-Competition Development (Dec 2025-May 2026):**
