@@ -208,32 +208,34 @@ The team conducted multiple cross-training sessions to ensure:
 - **Average Meeting Length:** 3.4 hours  
 - **Duration:** 15 weeks
 
-**Post-Competition Development (Dec 5, 2025 - Jan 12, 2026):**
-- **Total Meetings:** 15 sessions
-- **Total Hours:** 48 hours of intensive development
-- **Average Meeting Length:** 3.2 hours
-- **Duration:** 5 weeks
+**Post-Competition Development (Dec 5, 2025 - May 26, 2026):**
+
+- **Total Meetings:** 35 sessions
+- **Total Hours:** 175 hours of intensive development
+- **Average Meeting Length:** 3.5 hours
+- **Duration:** 25 weeks
+
 
 **Overall Project Statistics:**
-- **Total Meetings:** 49 sessions
-- **Total Hours:** 163 hours
-- **Project Duration:** 20 weeks
 
+- **Total Meetings:** 69 sessions
+- **Total Hours:** 290 hours
+- **Project Duration:** 40 weeks
 ### Individual Participation Hours (Updated through February 13th, 2026)
 
 | Team Member | Competition Hours | Post-Competition Hours | Total Hours |
-|-------------|-------------------|------------------------|-------------|
-| **Sana Salavath** | 74 | 44 | 171 |
-| **Mansi Ommi** | 106 | 40 | 221 |
-| **Anavi Sambaraju** | 110 | 42 | 228 |
-| **Saanvika Yezzuvarapu** | 97 | 41 | 206 |
-| **Amelia Easter** | 81 | 43 | 181 |
-| **Shrihan Vemula** | 101 | 45 | 220 |
-| **Darshan Ayyanar** | 93 | 44 | 200 |
-| **Sharman Gokhale** | 90 | 43 | 210 |
-| **Vihaan Cheepurupalli** | 83 | 43 | 194 |
+| ------------------------ | ----------------- | ---------------------- | ----------- |
+| **Sana Salavath** | 102 | 72 | 174 |
+| **Mansi Ommi** | 134 | 68 | 202 |
+| **Anavi Sambaraju** | 138 | 70 | 208 |
+| **Saanvika Yezzuvarapu** | 125 | 69 | 194 |
+| **Amelia Easter** | 109 | 71 | 180 |
+| **Shrihan Vemula** | 129 | 73 | 202 |
+| **Darshan Ayyanar** | 121 | 72 | 193 |
+| **Sharman Gokhale** | 118 | 71 | 189 |
+| **Vihaan Cheepurupalli** | 111 | 71 | 182 |
 
-**Team Average:** 146 hours per student
+**Team Average:** 192 hours per student
 
 ### Meeting Intensity by Phase
 
@@ -262,7 +264,7 @@ The team conducted multiple cross-training sessions to ensure:
 - Field Museum visit completed
 - Archaeological Survey of Illinois visit completed
 - Initial problem list created (20+ problems identified)
-- Cahokia Mounds visit completed 
+
 
 ![PXL_20250823_201232643](https://github.com/user-attachments/assets/a106ed3c-2788-4029-86b4-d60e384ed0d9)
 
@@ -331,7 +333,7 @@ The team conducted multiple cross-training sessions to ensure:
 - ✅ Deploy Flask API for data management
 - ✅ Train AI model for artifact detection
 - ✅ Gather community feedback
-- ✅ Testing prototype at Cahokia Mounds 
+- ✅ Meet expert to get feedback
 
 **Key Milestones:**
 - Raspberry Pi configured with all components
@@ -343,9 +345,11 @@ The team conducted multiple cross-training sessions to ensure:
 - Session summary generation complete
 - Real-time lab transmission enabled
 - Community feedback survey distributed
-- Provisional Patent Filed 
+- Provisional Patent Filed
+- Prototype tested at Cahokia Mounds
+- Attended the Nutanix .NEXT AI Conference in Chicago
 
-**Timeline:** 30 days (December 6, 2025 - February 13th, 2026)
+**Timeline:** 30 days (December 6, 2025 - May 26th, 2026)
 
 ### Storyboard & Progress Tracking
 
@@ -415,13 +419,28 @@ Our storyboard included:
 
 ![PXL_20260131_173542749](https://github.com/user-attachments/assets/4a434b0c-03eb-4446-8b2f-8bfb925380bd)
 
+### 4. Nutanix .NEXT AI Conference
 
-### 4. Community Outreach
+**What We Learned:**
+- The use of expert feedback
+- More about AI
+- Adding filtering to our speech to text
+
+**Key Takeaways:**
+- To use the Noise Reduce Package to filter out background noise 
+- Speaking strongly with confidence
+
+<img width="5712" height="4284" alt="IMG_8227 nutanix pic" src="https://github.com/user-attachments/assets/cb9eda83-885c-49e7-88ea-3527a3bf3d95" />
+
+
+
+### 5. Community Outreach
 **Activities:**
 - **SEWA Diwali Food Drive** - Served food at community events
 - **Million Meal Food Drive** - Volunteered to help fight hunger
 - Shared project with local groups
 - Connected archaeology to community heritage
+- Created a Youtube channle to inspire other FLL Teams and share our project worldwide
 
 **Impact:**
 - Connected archaeology to community heritage
@@ -783,7 +802,7 @@ We identified **20+ challenges** archaeologists face, including:
 
 ---
 
-### Iteration 3: All-in-One Device (FINAL)
+### FINAL Working Wand: All-in-One Device (FINAL)
 **Concept:** Complete field archaeology solution
 
 **Features Added:**
@@ -810,11 +829,15 @@ We identified **20+ challenges** archaeologists face, including:
 - AI converts speech to organized text
 - Notes automatically timestamped and GPS-tagged
 - Instant cloud backup
+- Removes background noise with Archeologists not having to worry about extra nosue being cpatured and ONLY important information. 
 
 **Benefits:**
 - No manual writing in difficult conditions
 - Faster documentation
 - Never lose handwritten notes
+- Data process is faster, safer, and more efficient
+- Reducinf extra fieldwork
+- Provides smart excavation guidance
 
 ---
 
@@ -844,6 +867,7 @@ We identified **20+ challenges** archaeologists face, including:
 - Find artifacts before excavating
 - Prevent accidental damage
 - Plan dig strategy intelligently
+- Detects easily wheter site is eligible to be a digsite or not 
 
 ---
 
@@ -1678,6 +1702,7 @@ Beyond the hard work, we built strong friendships and maintained team morale:
 - 🎉 **Fun breaks** - the secret ingredient for creativity
 - 📚 **Learning together** - shared discoveries and "aha!" moments
 - 🏗️ **Build sessions** - turning ideas into reality, one component at a time
+- 🏞  **Fun at the Park** - enjoying team time together, building teamwork and having fun!
 
 ![fun](https://github.com/user-attachments/assets/781f0a1e-906f-4ddc-8268-9d761960c8e2)
 
@@ -1708,7 +1733,7 @@ The **ASE Wand** represents more than just a technical innovation—it's a pract
 - 3 design iterations
 - 1 working demonstration
 
-**Post-Competition Development (Dec 2025-Jan 2026):**
+**Post-Competition Development (Dec 2025-May 2026):**
 - 48 hours of intensive development
 - 15 additional meetings
 - Working Raspberry Pi prototype
@@ -1718,11 +1743,12 @@ The **ASE Wand** represents more than just a technical innovation—it's a pract
 - AI model trained (17 classes, 87% accuracy)
 - Real-time lab transmission working
 - Community feedback survey distributed
+- Using Noise Reduce package to filter backgorund noise on speech to text
 
 **Total Project Stats:**
-- **163 total team hours**
-- **49 total meetings**
-- **20 weeks of dedication**
+- **290 total team hours**
+- **69 total meetings**
+- **40 weeks of dedication**
 - **Countless learning moments**
 
 **Our mission: Turn dust into data, and preserve history for tomorrow.**
@@ -1741,6 +1767,8 @@ The **ASE Wand** represents more than just a technical innovation—it's a pract
 - Anna Tulley (SWCA Environmental Consultants)
 - Dr. Claire Tolmie (Archaeologist)
 - Dale Simpson (Archaeologist)
+- Dustin Carter (Presentation Expert)
+- Many AI experts at the .NEXT Conference 
 
 ### Institutions
 - Field Museum, Chicago
@@ -1748,6 +1776,7 @@ The **ASE Wand** represents more than just a technical innovation—it's a pract
 - Illinois State Archaeological Survey, UIUC
 - Cahokia Mounds State Historic Site
 - University of Illinois Urbana-Champaign
+- Nutanix .NEXT Conference 
 
 ### Technology Partners
 - OpenAI (Whisper speech recognition)
